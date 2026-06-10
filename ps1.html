@@ -336,7 +336,7 @@
             for (let i = 0; i < slides.length; i++) {
                 const slide = slides[i];
                 const canvas = await html2canvas(slide, { 
-                    scale: 4, // 4x resolution for ultra-high quality
+                    scale: 8, // 8x resolution for 8K+ ultra-high quality
                     useCORS: true,
                     backgroundColor: '#FFFFFF'
                 });
