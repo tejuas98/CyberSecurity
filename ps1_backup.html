@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurakshaAPK — BOI CyberShield 2026 | PS1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-cream: #F7F1E5;
+            --text-main: #111827;
+            --text-muted: #475569;
+            --boi-blue: #005BAC;
+            --boi-green: #00A676;
+            --boi-orange: #E85D04;
+            --boi-navy: #0B1F3A;
+            --boi-red: #DC2626;
+            --font-main: 'Aptos', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-code: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slide {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding: 40px 60px 70px 60px; /* space for footer */
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Section Label */
+        .top-label {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #EAF4FF;
+            border: 1px solid var(--boi-blue);
+            border-radius: 4px;
+            color: var(--boi-blue);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .top-label.green { background-color: rgba(0, 166, 118, 0.1); border-color: var(--boi-green); color: var(--boi-green); }
+        .top-label.orange { background-color: rgba(232, 93, 4, 0.1); border-color: var(--boi-orange); color: var(--boi-orange); }
+
+        /* Slide Title */
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--boi-navy);
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 32px;
+            background-color: var(--boi-blue);
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Layout Grids */
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+        .grid-left-wide {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+        .grid-center-wide {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+        .grid-slide2 {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* Common Elements */
+        .box {
+            background-color: #FFFFFF;
+            border: 1px solid #D8D2C4;
+            border-top: 3px solid var(--boi-navy);
+            border-radius: 6px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            overflow-y: auto;
+        }
+        .box.blue { border-top-color: var(--boi-blue); }
+        .box.green { border-top-color: var(--boi-green); }
+        .box.orange { border-top-color: var(--boi-orange); }
+
+        .box-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--boi-navy);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 6px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9px;
+        }
+        th {
+            background-color: var(--boi-navy);
+            color: #FFFFFF;
+            font-weight: 700;
+            text-align: left;
+            padding: 6px 8px;
+            border: 1px solid #D8D2C4;
+        }
+        td {
+            padding: 6px 8px;
+            border: 1px solid #D8D2C4;
+            color: var(--text-main);
+        }
+        tr:nth-child(even) td { background-color: #F4EFE5; }
+        tr:nth-child(odd) td { background-color: #FFFFFF; }
+
+        /* Flowchart / Chains */
+        .flow-node {
+            background-color: #F8FAFC;
+            border: 1px solid var(--boi-blue);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            margin: 0 auto;
+            width: 85%;
+        }
+        .flow-title {
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .flow-body {
+            font-size: 9px;
+        }
+        .flow-arrow {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 2px 0;
+            font-weight: bold;
+        }
+
+        /* Code & JSON */
+        pre {
+            background-color: #0F172A;
+            color: #E2E8F0;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-size: 10px;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        .json-key { color: #38BDF8; }
+        .json-string { color: #A3E635; }
+        .json-number { color: #F472B6; }
+
+        /* Terminals */
+        .terminal {
+            background-color: #0a0a10;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            font-family: var(--font-code);
+            font-size: 10px;
+        }
+        .term-header {
+            background-color: #1a1a24;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .term-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .term-title { color: #94A3B8; font-family: var(--font-main); font-size: 10px; margin-left: 8px; font-weight: 600;}
+        .term-body { padding: 12px; color: #E2E8F0; line-height: 1.5; }
+
+        /* APK Tree */
+        .tree { font-family: var(--font-code); font-size: 10.5px; color: var(--boi-navy); line-height: 1.5; }
+        .tree-folder { font-weight: bold; color: var(--boi-blue); }
+        .tree-file { color: var(--text-main); }
+        .tree-note { color: var(--boi-orange); font-size: 9.5px; }
+
+        /* Urgent / Bottom Strip */
+        .bottom-strip {
+            margin-top: 16px;
+            background-color: #EAF8F0;
+            border: 1px solid var(--boi-green);
+            padding: 12px;
+            display: flex;
+            gap: 20px;
+        }
+        .bottom-block {
+            flex: 1;
+            padding-left: 12px;
+        }
+        .bottom-block-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--boi-navy);
+            margin-bottom: 4px;
+        }
+        .bottom-block-body {
+            font-size: 9.5px;
+            color: var(--text-muted);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: var(--boi-blue);
+            color: white;
+            border-radius: 12px;
+            font-size: 9.5px;
+            font-weight: bold;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        .badge.green { background-color: var(--boi-green); }
+        .badge.orange { background-color: var(--boi-orange); }
+
+        /* Cards inside boxes */
+        .mini-card {
+            background-color: #FFFDF8;
+            border: 1px solid #D8D2C4;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+        .mini-card-title { font-weight: 800; color: var(--boi-navy); margin-bottom: 4px; font-size: 11px; }
+        .mini-card-body { font-size: 9px; color: var(--text-muted); }
+
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title & Overview -->
+<div class="slide">
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <div style="font-size: 14px; font-weight: 800; color: var(--boi-orange); letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase;">Problem Statement 1 (PS1)</div>
+        <h1 style="font-size: 56px; font-weight: 800; color: var(--boi-navy); margin-bottom: 12px; line-height: 1.1;">SurakshaAPK</h1>
+        <div style="font-size: 20px; font-weight: 600; color: var(--boi-blue); margin-bottom: 32px;">Evidence-First GenAI Malware Investigator for Fraudulent Banking APKs</div>
+        
+        <p style="font-size: 16px; color: var(--text-muted); max-width: 800px; line-height: 1.6; margin-bottom: 40px;">
+            SurakshaAPK analyzes suspicious APKs, builds verifiable source-to-sink evidence graphs, and uses local GenAI to generate CERT-In/RBI-ready compliance reports — without sending sensitive bank data to the cloud.
+        </p>
+
+        <div class="terminal" style="width: 700px; text-align: left; margin: 0 auto; box-shadow: 0 24px 48px rgba(0,0,0,0.15);">
+            <div class="term-header">
+                <div class="term-dot" style="background: #ff5f56;"></div>
+                <div class="term-dot" style="background: #ffbd2e;"></div>
+                <div class="term-dot" style="background: #27c93f;"></div>
+                <div class="term-title">SurakshaAPK Local Console</div>
+            </div>
+            <div class="term-body" style="font-size: 12px;">
+                <span style="color:#39FF88;">$</span> surakshaapk analyze BOI_KYC_Update.apk --profile boi --mode local<br>
+                <span style="color:#A3E635;">[+]</span> Extracting manifest and DEX... <span style="color:#94A3B8;">[DONE]</span><br>
+                <span style="color:#A3E635;">[+]</span> Identifying API source-to-sink chains... <span style="color:#94A3B8;">[DONE]</span><br>
+                <span style="color:#F472B6;">[!]</span> <b>EVIDENCE [E1]:</b> SMS receiver → Regex extract → HTTP POST (non-bank IP)<br>
+                <span style="color:#F472B6;">[!]</span> <b>EVIDENCE [E2]:</b> Bank of India logo impersonation + Unknown signer<br>
+                <span style="color:#38BDF8;">[i]</span> Generating Threat Summary via Local LLM... <span style="color:#94A3B8;">[DONE]</span><br>
+                <span style="color:#E85D04;">=></span> <b>VERDICT: CRITICAL RISK (94/100). Bank Impersonation + OTP Theft.</b>
+            </div>
+        </div>
+        
+        <div style="margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; font-size: 11px;">
+            <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 6px 12px; border-radius: 4px; color: #005BAC; display: flex; align-items: center; gap: 4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                APK
+            </div>
+            <div style="color: #475569;">→</div>
+            <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 6px 12px; border-radius: 4px; color: #E85D04;">Evidence Graph</div>
+            <div style="color: #475569;">→</div>
+            <div style="background: #FDECEC; border: 1px solid #DC2626; padding: 6px 12px; border-radius: 4px; color: #DC2626;">Risk Score</div>
+            <div style="color: #475569;">→</div>
+            <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 6px 12px; border-radius: 4px; color: #00A676;">GenAI Report</div>
+            <div style="color: #475569;">→</div>
+            <div style="background: #0B1F3A; border: 1px solid #0B1F3A; padding: 6px 12px; border-radius: 4px; color: white;">Bank Action</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>1 / 15</span>
+    </div>
+</div>
+
+<!-- SLIDE 2: Problem Understanding & Fraud Landscape -->
+<div class="slide">
+    <div class="top-label">PROBLEM UNDERSTANDING</div>
+    <h2>Fraudulent APKs Are Becoming Banking Fraud Weapons</h2>
+    <div class="subtitle">Fraudsters distribute fake banking APKs through WhatsApp, SMS, email and phishing links to steal credentials, OTPs and sensitive customer data.</div>
+    
+    <div class="grid-slide2">
+        <!-- Left Panel: 32% -->
+        <div style="flex: 0 0 32%; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-main); font-weight: 800; font-size: 12px; color: var(--boi-navy); margin-bottom: 8px;">Official PS1 Requirement → SurakshaAPK Coverage</div>
+            <table style="flex: 1;">
+                <tr>
+                    <th>Official PS1 Requirement</th>
+                    <th>SurakshaAPK Coverage</th>
+                </tr>
+                <tr>
+                    <td>Automated APK analysis</td>
+                    <td>Secure APK intake + SHA-256 hashing</td>
+                </tr>
+                <tr>
+                    <td>Reverse engineering</td>
+                    <td>JADX / AndroGuard / API-chain extraction</td>
+                </tr>
+                <tr>
+                    <td>Static analysis</td>
+                    <td>Manifest, permissions, code, URLs, certificates</td>
+                </tr>
+                <tr>
+                    <td>Dynamic analysis</td>
+                    <td>Selective runtime validation with triggers</td>
+                </tr>
+                <tr>
+                    <td>GenAI code interpretation</td>
+                    <td>Local LLM explains verified evidence</td>
+                </tr>
+                <tr>
+                    <td>Risk scoring</td>
+                    <td>Evidence-based score + confidence</td>
+                </tr>
+                <tr>
+                    <td>Investigation reports</td>
+                    <td>IOCs, YARA, SIEM JSON, CERT-In/RBI-ready draft</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Center Panel: 42% -->
+        <div style="flex: 0 0 42%; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-main); font-weight: 800; font-size: 12px; color: var(--boi-navy); margin-bottom: 8px;">Typical Banking Fraud APK Flow</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                <div class="flow-node" style="background:#EAF4FF; border-color:#005BAC; color:#005BAC;">
+                    <div class="flow-title">1. Distribution</div>
+                    <div class="flow-body">WhatsApp • SMS • Email<br>Phishing links</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node" style="background:#FFF3E8; border-color:#E85D04; color:#E85D04;">
+                    <div class="flow-title">2. Fake Banking APK</div>
+                    <div class="flow-body">KYC update • Loan approval<br>Security patch</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node" style="background:#FDECEC; border-color:#DC2626; color:#DC2626;">
+                    <div class="flow-title">3. Permission Abuse</div>
+                    <div class="flow-body">SMS • Overlay<br>Accessibility • Internet</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node" style="background:#FDECEC; border-color:#DC2626; color:#DC2626;">
+                    <div class="flow-title">4. Data Theft</div>
+                    <div class="flow-body">Credentials • OTP<br>Screen text • Contacts</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node" style="background:#101820; border-color:#101820; color:white;">
+                    <div class="flow-title">5. C2 Exfiltration</div>
+                    <div class="flow-body">Non-bank endpoint<br>Suspicious server</div>
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-node" style="background:#EAF8F0; border-color:#00A676; color:#00A676;">
+                    <div class="flow-title">6. Fraud Outcome</div>
+                    <div class="flow-body">Unauthorized transfer<br>Customer loss</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: 22% (the rest) -->
+        <div style="flex: 1; display: flex; flex-direction: column;">
+            <div style="font-family: var(--font-main); font-weight: 800; font-size: 12px; color: var(--boi-navy); margin-bottom: 8px;">Fake APK Lure Example</div>
+            
+            <div style="background: #FFFFFF; border: 2px solid #111827; border-radius: 12px; padding: 12px; width: 140px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style="text-align: center; font-weight: 800; font-size: 10px; color: var(--boi-orange); margin-bottom: 8px;">BOI KYC Update</div>
+                <div style="font-size: 8px; color: var(--text-main); margin-bottom: 8px; text-align: center;">Your KYC is expired.<br>Update now to avoid account freeze.</div>
+                <div style="border: 1px solid #D8D2C4; padding: 4px; font-size: 7px; color: var(--text-muted); margin-bottom: 6px; border-radius: 2px;">[Enter Mobile Number]</div>
+                <div style="border: 1px solid #D8D2C4; padding: 4px; font-size: 7px; color: var(--text-muted); margin-bottom: 8px; border-radius: 2px;">[Enter OTP]</div>
+                <div style="background: var(--boi-blue); color: white; text-align: center; padding: 4px; font-size: 8px; font-weight: bold; border-radius: 4px;">Submit</div>
+            </div>
+            
+            <div style="text-align: center; font-size: 9px; color: var(--text-muted); margin-top: 8px; font-style: italic;">
+                Fake KYC APK lure UI
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Strip -->
+    <div class="bottom-strip">
+        <div class="bottom-block" style="border-left: 3px solid var(--boi-red);">
+            <div class="bottom-block-title">Manual Analysis Bottleneck</div>
+            <div class="bottom-block-body">Reverse engineering suspicious APKs is slow and expert-dependent.</div>
+        </div>
+        <div class="bottom-block" style="border-left: 3px solid var(--boi-orange);">
+            <div class="bottom-block-title">False Positive Problem</div>
+            <div class="bottom-block-body">Dangerous permissions alone do not prove malicious intent.</div>
+        </div>
+        <div class="bottom-block" style="border-left: 3px solid var(--boi-green);">
+            <div class="bottom-block-title">SurakshaAPK Focus</div>
+            <div class="bottom-block-body">Detect complete fraud behavior chains before customer loss.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>2 / 15</span>
+    </div>
+</div>
+
+<!-- SLIDE 3: Analyst Bottleneck & Core Issues -->
+<div class="slide">
+    <div class="top-label orange" style="background-color: #FFF3E8; border-color: #E85D04; color: #E85D04;">CURRENT GAPS</div>
+    <h2>Analyst Bottleneck & Current Core Issues</h2>
+    <div class="subtitle">Existing APK triage is slow, expert-dependent and often indicator-based. Banks need automated investigation that proves malicious behavior chains instead of only flagging suspicious permissions.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: 28% -->
+        <div class="box" style="flex: 0 0 28%; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Manual APK Analysis Flow</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Suspicious APK received</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Hash + unpack APK</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Read AndroidManifest.xml</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Decompile with JADX / Smali</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Trace APIs and strings</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Run sandbox / observe behavior</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                <div class="flow-node" style="width:90%; padding:4px; font-size:9px; background:#FFFFFF; border:1px solid #D8D2C4; color:#111827; margin:0;">Write report + IOCs manually</div>
+            </div>
+            <div style="margin-top: 12px; background: #FDECEC; border: 1px solid #DC2626; padding: 8px; border-radius: 4px; font-weight: 600; font-size: 9px; color: var(--boi-navy);">
+                <strong style="color: #DC2626;">Bottleneck:</strong><br>Requires reverse-engineering skill, tool experience and manual report writing.
+            </div>
+        </div>
+
+        <!-- Center Panel: 42% -->
+        <div class="box" style="flex: 0 0 42%; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Current Issues vs SurakshaAPK Response</div>
+            <table style="font-size: 8px; flex: 1;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="width:30%; background:var(--boi-navy); color:white; font-size:9px;">Current Core Issue</th>
+                    <th style="width:32%; background:var(--boi-navy); color:white; font-size:9px;">Why It Fails</th>
+                    <th style="width:38%; background:var(--boi-navy); color:white; font-size:9px;">SurakshaAPK Response</th>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Manual reverse engineering</td>
+                    <td>Slow and expert-dependent</td>
+                    <td style="background:#EAF8F0; color:#00A676; font-weight:bold;">Automated static triage + structured evidence</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Obfuscation and packing</td>
+                    <td>Renamed classes, encrypted strings, hidden payloads</td>
+                    <td style="background:#EAF8F0; color:#00A676; font-weight:bold;">Multi-feature extraction + obfuscation indicators</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Permission-only detection</td>
+                    <td>Benign apps may also use SMS/Internet</td>
+                    <td style="background:#EAF8F0; color:#00A676; font-weight:bold;">Attack-chain detection using source → transform → sink</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Sandbox behavior gap</td>
+                    <td>Malware waits for OTP/accessibility/bank app trigger</td>
+                    <td style="background:#EAF8F0; color:#00A676; font-weight:bold;">Selective dynamic validation driven by static findings</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">Reporting bottleneck</td>
+                    <td>Analysts manually summarize IOCs and risk</td>
+                    <td style="background:#EAF8F0; color:#00A676; font-weight:bold;">GenAI drafts evidence-grounded reports and recommendations</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Right Panel: 25% -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Permission ≠ Malicious Intent</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px;">
+                <!-- Traditional -->
+                <div style="background: #FFF3E8; border: 1px solid #E85D04; border-radius: 4px; padding: 10px;">
+                    <div style="font-weight: 800; font-size: 11px; color: #E85D04; margin-bottom: 6px;">Traditional Alert</div>
+                    <div style="font-weight: 800; font-size: 11px; color: var(--boi-navy); line-height: 1.4;">
+                        READ_SMS + INTERNET<br>
+                        = Suspicious
+                    </div>
+                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 6px;">
+                        Problem: benign apps may also use sensitive permissions.
+                    </div>
+                </div>
+
+                <!-- SurakshaAPK -->
+                <div style="background: #EAF8F0; border: 1px solid #00A676; border-radius: 4px; padding: 10px;">
+                    <div style="font-weight: 800; font-size: 11px; color: #00A676; margin-bottom: 6px;">SurakshaAPK Evidence Chain</div>
+                    <div style="font-weight: 800; font-size: 9.5px; color: var(--boi-navy); line-height: 1.4;">
+                        SMS_RECEIVED<br>
+                        → OTP regex extraction<br>
+                        → AES/Base64 encoding<br>
+                        → HTTP POST<br>
+                        → Non-bank C2 endpoint<br>
+                        = <span style="color: #DC2626;">OTP Theft</span>
+                    </div>
+                    <div style="font-size: 9px; color: var(--text-muted); margin-top: 6px;">
+                        Intent is proven by behavior chain.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Strip -->
+    <div style="margin-top: 16px; background: #EAF8F0; border: 1px solid #00A676; padding: 12px 16px; text-align: center; border-radius: 4px;">
+        <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy); margin-bottom: 4px;">
+            SurakshaAPK addresses the analyst bottleneck by converting raw APK indicators into <span style="color:#00A676;">evidence-backed fraud behavior chains</span>.
+        </div>
+        <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+            Current tools find indicators. SurakshaAPK <span style="color:#E85D04;">proves intent</span>.
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>3 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 4: Proposed Solution: Core Philosophy -->
+<div class="slide">
+    <div class="top-label green" style="background-color: #EAF8F0; border-color: #00A676; color: #00A676;">PROPOSED SOLUTION</div>
+    <h2 style="margin-bottom: 2px;">Proposed Solution: SurakshaAPK</h2>
+    <div style="font-size: 16px; font-weight: 600; color: var(--boi-blue); margin-bottom: 12px;">Evidence-First GenAI Malware Investigator for Fraudulent Banking APKs</div>
+    <div class="subtitle" style="font-size: 12.5px; margin-bottom: 16px;">SurakshaAPK automates suspicious APK investigation by combining static reverse engineering, selective dynamic validation, evidence graph construction, deterministic risk scoring and GenAI-powered reporting.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Features -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">What SurakshaAPK Does</div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-blue); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Secure APK / link intake with SHA-256 hashing
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-green); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Static reverse engineering of manifest, code, APIs and URLs
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-orange); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Bank Profile Adapter for BOI-specific impersonation checks
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-navy); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    APK Fraud Evidence Graph for source-to-sink attack chains
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-red); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Selective dynamic validation with fake OTP and sinkhole triggers
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-green); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Local GenAI for code explanation and threat summarization
+                </div>
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid var(--boi-blue); padding: 8px 10px; border-radius: 4px; font-size: 9.5px; font-weight: 600; color: #111827;">
+                    Risk score, confidence score and CERT-In/RBI-ready reports
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Pipeline -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">4-Layer Evidence-First Pipeline</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                <div class="flow-node" style="width:90%; padding:8px; background:#EAF4FF; border-color:var(--boi-blue); margin:0;">
+                    <div style="font-size:11px; font-weight:800; color:var(--boi-navy); margin-bottom:2px;">L1 Static Decomposition</div>
+                    <div style="font-size:9px; color:var(--text-muted);">Manifest • Permissions • APIs • URLs • Certificates</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:14px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:8px; background:#FFF3E8; border-color:var(--boi-orange); margin:0;">
+                    <div style="font-size:11px; font-weight:800; color:var(--boi-navy); margin-bottom:2px;">L2 Selective Dynamic Sandbox</div>
+                    <div style="font-size:9px; color:var(--text-muted);">Fake OTP • Overlay • Accessibility • Sinkhole</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:14px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:8px; background:#EAF8F0; border-color:var(--boi-green); margin:0;">
+                    <div style="font-size:11px; font-weight:800; color:var(--boi-navy); margin-bottom:2px;">L3 GenAI Evidence Explanation</div>
+                    <div style="font-size:9px; color:var(--text-muted);">Code intent • MITRE mapping • Threat summary</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:14px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:8px; background:#ECEFF5; border-color:var(--boi-navy); margin:0;">
+                    <div style="font-size:11px; font-weight:800; color:var(--boi-navy); margin-bottom:2px;">L4 Risk + Compliance Reports</div>
+                    <div style="font-size:9px; color:var(--text-muted);">0–100 score • Confidence • IOCs • Report</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Prototype Screenshots -->
+        <div class="box" style="flex: 0 0 28%; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 8px;">Prototype Interfaces</div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px; overflow-y: auto;">
+                
+                <!-- Mock Screen 1: Upload Dashboard -->
+                <div style="background: white; border: 1px solid #D8D2C4; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="background: #0B1F3A; padding: 4px 8px; color: white; font-size: 8px; font-weight: bold; display: flex; justify-content: space-between;">
+                        <span>SurakshaAPK Dashboard</span>
+                        <span style="color: #94A3B8;">Prototype UI</span>
+                    </div>
+                    <div style="padding: 8px; font-size: 7.5px; color: var(--text-main);">
+                        <div style="border: 1px dashed #005BAC; background: #EAF4FF; padding: 8px; text-align: center; border-radius: 4px; margin-bottom: 6px; color: #005BAC; font-weight: bold;">
+                            [ Drop APK here ]
+                        </div>
+                        <div style="margin-bottom: 4px;"><b>File:</b> BOI_KYC_Update.apk</div>
+                        <div style="margin-bottom: 4px; color: var(--text-muted);"><b>SHA-256:</b> calculating...</div>
+                        <div style="margin-bottom: 4px;"><b>Bank Profile:</b> Bank of India</div>
+                        <div style="margin-bottom: 6px;"><b>Mode:</b> Local / Offline</div>
+                        <div style="background: #00A676; color: white; text-align: center; padding: 4px; border-radius: 2px; font-weight: bold;">[ Analyze APK ]</div>
+                    </div>
+                </div>
+
+                <!-- Mock Screen 3: Evidence Graph Viewer -->
+                <div style="background: white; border: 1px solid #D8D2C4; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="background: #0B1F3A; padding: 4px 8px; color: white; font-size: 8px; font-weight: bold; display: flex; justify-content: space-between;">
+                        <span>Evidence Graph Viewer</span>
+                        <span style="color: #94A3B8;">Prototype UI</span>
+                    </div>
+                    <div style="padding: 8px; font-size: 7px; color: var(--text-main); font-family: var(--font-code); display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px; line-height: 1.4;">
+                        <span style="background: #EAF8F0; border: 1px solid #00A676; padding: 2px 4px; border-radius: 2px;">SMS_RECEIVED</span> <span style="color:#475569;">→</span>
+                        <span style="background: #FFF3E8; border: 1px solid #E85D04; padding: 2px 4px; border-radius: 2px;">OTP Regex</span> <span style="color:#475569;">→</span>
+                        <span style="background: #EAF4FF; border: 1px solid #005BAC; padding: 2px 4px; border-radius: 2px;">AES Encode</span> <span style="color:#475569;">→</span>
+                        <span style="background: #FDECEC; border: 1px solid #DC2626; padding: 2px 4px; border-radius: 2px;">HTTP POST</span> <span style="color:#475569;">→</span>
+                        <span style="background: #101820; border: 1px solid #101820; color: white; padding: 2px 4px; border-radius: 2px;">Unknown C2</span>
+                    </div>
+                </div>
+
+                <!-- Mock Screen 4: Risk Report -->
+                <div style="background: white; border: 1px solid #D8D2C4; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="background: #0B1F3A; padding: 4px 8px; color: white; font-size: 8px; font-weight: bold; display: flex; justify-content: space-between;">
+                        <span>Investigation Report</span>
+                        <span style="color: #94A3B8;">Prototype UI</span>
+                    </div>
+                    <div style="padding: 8px; font-size: 7.5px; color: var(--text-main);">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px; margin-bottom: 4px;">
+                            <div>
+                                <div style="color: var(--text-muted); font-size: 7px;">Risk Score</div>
+                                <div style="color: #DC2626; font-size: 14px; font-weight: 800;">87/100</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--text-muted); font-size: 7px;">Verdict</div>
+                                <div style="color: #DC2626; font-weight: bold;">Critical</div>
+                                <div style="color: #00A676; font-weight: bold; font-size: 7px;">Conf: 92%</div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 4px;"><b>Class:</b> Fake KYC Trojan</div>
+                        <div style="color: var(--text-muted); font-size: 7px; margin-bottom: 2px;">Evidence:</div>
+                        <div style="font-family: var(--font-code); font-size: 7.5px; color: var(--boi-blue); line-height: 1.3;">
+                            <b>E1</b> OTP Theft<br>
+                            <b>E2</b> Fake Overlay<br>
+                            <b>E3</b> Non-bank C2
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Badges & Philosophy Line -->
+    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+        <!-- Badges -->
+        <div style="display: flex; gap: 8px;">
+            <span class="badge" style="background: #005BAC; border-radius: 12px; padding: 4px 10px; font-size: 9px; font-weight: bold; color: white;">Evidence-First</span>
+            <span class="badge" style="background: #00A676; border-radius: 12px; padding: 4px 10px; font-size: 9px; font-weight: bold; color: white;">Local/Offline Default</span>
+            <span class="badge" style="background: #E85D04; border-radius: 12px; padding: 4px 10px; font-size: 9px; font-weight: bold; color: white;">BOI Profile Adapter</span>
+            <span class="badge" style="background: #0B1F3A; border-radius: 12px; padding: 4px 10px; font-size: 9px; font-weight: bold; color: white;">False-Positive Control</span>
+            <span class="badge" style="background: #00A676; border-radius: 12px; padding: 4px 10px; font-size: 9px; font-weight: bold; color: white;">Actionable Reports</span>
+        </div>
+        
+        <!-- Philosophy Strip -->
+        <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 10px 16px; text-align: center; border-radius: 4px;">
+            <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+                SurakshaAPK <span style="color:#DC2626;">does not ask an LLM to guess malware</span> — it asks GenAI to <span style="color:#00A676;">explain verified evidence</span>.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>4 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 5: System Architecture -->
+<div class="slide">
+    <div class="top-label blue" style="background-color: #EAF4FF; border-color: #005BAC; color: #005BAC;">TECHNICAL ARCHITECTURE</div>
+    <h2 style="margin-bottom: 6px;">System Architecture & Privacy-First Data Flow</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK is designed as a local-first APK investigation pipeline where raw APKs, extracted code and evidence stay inside the bank environment by default.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Main Architecture Flow -->
+        <div class="box" style="flex: 2.2; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Main System Architecture Flow</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                
+                <div style="font-size: 9px; font-weight: bold; color: var(--boi-orange); position: absolute; right: 20px; top: 35%;">
+                    ★ Central Artifact: Evidence Graph JSON
+                </div>
+                
+                <!-- Level 1 -->
+                <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #005BAC; margin-bottom: 0;">
+                    <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Customer / SOC Upload</div>
+                    <div style="font-size:8px; color:var(--text-muted);">Suspicious APKs, phishing links</div>
+                </div>
+                <div class="flow-arrow" style="margin: 0; font-size:14px;">↓</div>
+                
+                <!-- Level 2 -->
+                <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #0B1F3A; margin-bottom: 0;">
+                    <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Secure Upload Gateway</div>
+                    <div style="font-size:8px; color:var(--text-muted);">SHA-256 • dup check • quarantine</div>
+                </div>
+                <div class="flow-arrow" style="margin: 0; font-size:14px;">↓</div>
+                
+                <!-- Level 3 -->
+                <div style="display: flex; gap: 40px; align-items: center;">
+                    <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #00A676; margin-bottom: 0;">
+                        <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Static Analysis Worker</div>
+                        <div style="font-size:8px; color:var(--text-muted);">JADX • AndroGuard • YARA</div>
+                    </div>
+                    <div style="font-size:14px; color:#475569; font-weight:bold;">→</div>
+                    <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #E85D04; margin-bottom: 0; background: #FFF3E8;">
+                        <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Evidence Graph Store</div>
+                        <div style="font-size:8px; color:var(--text-muted);">Source-to-sink chains • IOCs</div>
+                    </div>
+                </div>
+                <div class="flow-arrow" style="margin: 0; font-size:14px; position:relative; left: 130px;">↓</div>
+                
+                <!-- Level 4 -->
+                <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #DC2626; margin-bottom: 0; position:relative; left: 130px;">
+                    <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Risk Router</div>
+                    <div style="font-size:8px; color:var(--text-muted);">Decides if dynamic is needed</div>
+                </div>
+                
+                <!-- Level 5 Branching -->
+                <div style="display: flex; gap: 60px; margin-top: 4px;">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size:12px; color:#475569; font-weight:bold; margin-bottom:4px;">↙</div>
+                        <div class="flow-node" style="width: 140px; padding: 4px; border-top: 3px solid #00A676; margin-bottom: 0;">
+                            <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Low-Risk</div>
+                            <div style="font-size:8px; color:var(--text-muted);">Direct to Report</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="font-size:12px; color:#475569; font-weight:bold; margin-bottom:4px;">↘</div>
+                        <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #E85D04; margin-bottom: 0;">
+                            <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Dynamic Validation Worker</div>
+                            <div style="font-size:8px; color:var(--text-muted);">Emulator • Frida • Sinkhole</div>
+                        </div>
+                        <div class="flow-arrow" style="margin: 0; font-size:12px;">↓</div>
+                        
+                        <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #DC2626; margin-bottom: 0;">
+                            <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Risk Scoring Engine</div>
+                            <div style="font-size:8px; color:var(--text-muted);">0–100 score • confidence</div>
+                        </div>
+                        <div class="flow-arrow" style="margin: 0; font-size:12px;">↓</div>
+                        
+                        <div class="flow-node" style="width: 200px; padding: 4px; border-top: 3px solid #00A676; margin-bottom: 0;">
+                            <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Local GenAI Report Engine</div>
+                            <div style="font-size:8px; color:var(--text-muted);">Threat summary • MITRE</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 6px; width: 400px; border-top: 1px solid #D8D2C4; padding-top: 6px; text-align: center;">
+                    <div class="flow-node" style="width: 100%; padding: 4px; border-top: 3px solid #005BAC; margin: 0 auto; background: #EAF4FF;">
+                        <div style="font-size:10px; font-weight:800; color:var(--boi-navy);">Dashboard / PDF / IOC Export</div>
+                        <div style="font-size:8px; color:var(--text-muted);">Report • YARA • SIEM JSON • CERT-In/RBI draft</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Panels -->
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+            
+            <!-- Privacy Panel -->
+            <div class="box" style="flex: 1.2; background: #EAF4FF; border-color: #005BAC; padding: 12px;">
+                <div class="box-title">Privacy & Safety Controls</div>
+                <ul style="font-size: 9px; line-height: 1.5; color: #111827; padding-left: 16px;">
+                    <li style="margin-bottom: 4px;"><b>✓</b> Local/offline deployment by default</li>
+                    <li style="margin-bottom: 4px;"><b>✓</b> Raw APK and extracted code stay inside bank environment</li>
+                    <li style="margin-bottom: 4px;"><b>✓</b> Restricted network egress during analysis</li>
+                    <li style="margin-bottom: 4px;"><b>✓</b> C2 traffic routed to sinkhole</li>
+                    <li style="margin-bottom: 4px;"><b>✓</b> High-risk APKs stored in encrypted quarantine</li>
+                    <li style="margin-bottom: 4px;"><b>✓</b> Audit logs: hash, tool versions, timestamps, analyst actions</li>
+                    <li><b>✓</b> Optional enhanced mode: sanitized metadata only after approval</li>
+                </ul>
+            </div>
+
+            <!-- Tiered Analysis Panel -->
+            <div class="box" style="flex: 1; background: #EAF8F0; border-color: #00A676; padding: 12px;">
+                <div class="box-title">Tiered Analysis Strategy</div>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="background: #EAF4FF; border-left: 3px solid #005BAC; padding: 6px; border-radius: 4px;">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy);">Tier 1: Fast Static Triage</div>
+                        <div style="font-size: 8px; color: var(--text-muted);">All APKs<br>Manifest + code + IOC extraction</div>
+                    </div>
+                    <div style="background: #FFF3E8; border-left: 3px solid #E85D04; padding: 6px; border-radius: 4px;">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy);">Tier 2: Selective Dynamic Validation</div>
+                        <div style="font-size: 8px; color: var(--text-muted);">High-risk / unclear APKs<br>Fake OTP + overlay + sinkhole triggers</div>
+                    </div>
+                    <div style="background: #FDECEC; border-left: 3px solid #DC2626; padding: 6px; border-radius: 4px;">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy);">Tier 3: Human Analyst Escalation</div>
+                        <div style="font-size: 8px; color: var(--text-muted);">Critical / low-confidence cases<br>Forensics bundle + evidence report</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>5 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 6: Bank Profile Adapter -->
+<div class="slide">
+    <div class="top-label blue" style="background-color: #EAF4FF; border-color: #005BAC; color: #005BAC;">BANK-SPECIFIC FRAUD INTELLIGENCE</div>
+    <h2 style="margin-bottom: 6px;">Bank Profile Adapter & BOI Threat Intelligence</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK uses configurable bank profiles to compare suspicious APKs against official bank identity, domains, certificates, app behavior and known fraud patterns.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: BOI Profile JSON -->
+        <div class="box" style="flex: 1.1; display: flex; flex-direction: column; background: #101820; border: 1px solid #101820; padding: 0; overflow: hidden;">
+            <div style="background: #1F2937; padding: 8px 12px; font-family: var(--font-main); font-weight: 800; font-size: 10px; color: #D6DEE8; border-bottom: 1px solid #374151;">BOI Bank Profile Adapter</div>
+            <pre style="background: transparent; color: #D6DEE8; font-size: 9px; padding: 12px; margin: 0; flex: 1; border-radius: 0; overflow-y: auto;">
+{
+  <span style="color:#60A5FA;">"bank_name"</span>: <span style="color:#22C55E;">"Bank of India"</span>,
+  <span style="color:#60A5FA;">"official_package"</span>: <span style="color:#F59E0B;">"com.boi.ua.android"</span>,
+  <span style="color:#60A5FA;">"official_domains"</span>: [<span style="color:#22C55E;">"bankofindia.co.in"</span>],
+  <span style="color:#60A5FA;">"fraud_keywords"</span>: [
+    <span style="color:#22C55E;">"KYC Update"</span>,
+    <span style="color:#22C55E;">"Account Freeze"</span>,
+    <span style="color:#22C55E;">"Loan Approved"</span>
+  ],
+  <span style="color:#60A5FA;">"high_risk_behaviors"</span>: [
+    <span style="color:#22C55E;">"OTP theft"</span>,
+    <span style="color:#22C55E;">"overlay attack"</span>,
+    <span style="color:#22C55E;">"credential exfiltration"</span>
+  ]
+}
+            </pre>
+        </div>
+
+        <!-- Center Panel: Detection Logic Flow -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Detection Logic Flow</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFFFFF; border:1px solid #D8D2C4; color:#0B1F3A; margin:0; font-size:9px;">Suspicious APK uploaded</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px;">Claims BOI identity?</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px;">Package/certificate mismatch?</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px;">Uses KYC/loan bait?</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px;">Collects OTP / credentials?</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px;">Sends data to non-bank endpoint?</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FDECEC; border:1px solid #DC2626; color:#DC2626; margin:0; font-size:9.5px; font-weight: 800;">High Risk: Bank Impersonation Fraud APK</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Comparison Table -->
+        <div class="box" style="flex: 1.4; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Official vs Suspicious APK Comparison</div>
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 6px; font-size: 9px;">Attribute</th>
+                    <th style="padding: 6px; font-size: 9px;">Official BOI App</th>
+                    <th style="padding: 6px; font-size: 9px;">Suspicious APK</th>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">Package</td>
+                    <td style="background:#EAF8F0; padding: 6px; font-family: var(--font-code);">com.boi.ua.android</td>
+                    <td style="background:#FFF3E8; padding: 6px; font-family: var(--font-code); color: #E85D04;">com.fake.boi.kyc</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">Certificate</td>
+                    <td style="background:#EAF8F0; padding: 6px;">Known BOI signer</td>
+                    <td style="background:#FFF3E8; padding: 6px; color: #DC2626; font-weight: bold;">Unknown signer</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">Domains</td>
+                    <td style="background:#EAF8F0; padding: 6px; font-family: var(--font-code);">bankofindia.co.in</td>
+                    <td style="background:#FFF3E8; padding: 6px; color: #E85D04;">Non-bank endpoint</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">UI text</td>
+                    <td style="background:#EAF8F0; padding: 6px;">Official banking flow</td>
+                    <td style="background:#FFF3E8; padding: 6px; color: #E85D04;">"KYC expired", "Loan approved"</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">Sensitive input</td>
+                    <td style="background:#EAF8F0; padding: 6px;">Bank-controlled flow</td>
+                    <td style="background:#FFF3E8; padding: 6px; color: #E85D04;">OTP/PIN/card capture</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold; padding: 6px;">Risk</td>
+                    <td style="background:#EAF8F0; padding: 6px; color: #00A676; font-weight: bold;">Baseline</td>
+                    <td style="background:#FFF3E8; padding: 6px; color: #DC2626; font-weight: bold;">High/Critical</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Bottom Strip -->
+    <div style="margin-top: 16px; background: #EAF8F0; border: 1px solid #00A676; padding: 12px 16px; text-align: center; border-radius: 4px;">
+        <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+            To onboard another bank, update package names, certificates, domains, brand keywords and fraud templates — <span style="color:#00A676;">no core engine rewrite needed</span>.
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>6 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 7: Static Analysis -->
+<div class="slide">
+    <div class="top-label blue" style="background-color: #EAF4FF; border-color: #005BAC; color: #005BAC;">LAYER 1 — STATIC DECOMPOSITION</div>
+    <h2 style="margin-bottom: 6px;">Static Analysis Deep Dive + APK Feature Engineering</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK decomposes APK structure into structured evidence features before execution, enabling fast triage, false-positive control and dynamic trigger planning.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: APK Structure Tree -->
+        <div class="box" style="flex: 1.15; display: flex; flex-direction: column; background: #101820; border: 1px solid #101820; padding: 0; overflow: hidden;">
+            <div style="background: #1F2937; padding: 8px 12px; font-family: var(--font-main); font-weight: 800; font-size: 10px; color: #D6DEE8; border-bottom: 1px solid #374151;">APK Structure</div>
+            <pre style="background: transparent; color: #D6DEE8; font-size: 8.5px; padding: 12px; margin: 0; flex: 1; border-radius: 0; overflow-y: auto; line-height: 1.6;">
+BOI_KYC_Update.apk
+├── <span style="color:#60A5FA;">AndroidManifest.xml</span>
+│   └── permissions, receivers, services
+├── <span style="color:#22C55E;">classes.dex</span>
+│   └── Java/Smali code, API calls
+├── <span style="color:#F59E0B;">resources.arsc</span>
+│   └── strings, layouts, fake UI text
+├── <span style="color:#D6DEE8;">lib/*.so</span>
+│   └── native libraries / payloads
+├── <span style="color:#D6DEE8;">assets/</span>
+│   └── configs, hidden payloads
+└── <span style="color:#EF4444;">META-INF/</span>
+    └── certificate, signature
+            </pre>
+        </div>
+
+        <!-- Center Panel: Static Pipeline -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4; position: relative;">
+            <div class="box-title">Static Analysis Pipeline</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #005BAC; color:#111827; margin:0; font-size:8px;">APK Unzip</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #005BAC; color:#111827; margin:0; font-size:8px;">Manifest Parse</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #00A676; color:#111827; margin:0; font-size:8px;">Permission + Component Map</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #E85D04; color:#111827; margin:0; font-size:8px;">JADX / AndroGuard Decompile</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #E85D04; color:#111827; margin:0; font-size:8px;">String + URL Extraction</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #00A676; color:#111827; margin:0; font-size:8px;">API Source-Sink Mapping</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #DC2626; color:#111827; margin:0; font-size:8px;">Obfuscation / Packer Detection</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:5px; background:#FFFFFF; border:1px solid #D8D2C4; border-left:3px solid #0B1F3A; color:#111827; margin:0; font-size:8px;">Static Evidence JSON</div>
+            </div>
+            
+            <div style="position: absolute; right: -25px; top: 40%; font-size: 10px; color: #475569; font-weight: bold;">→</div>
+            <div style="position: absolute; right: -35px; top: 35%; font-size: 8px; color: #475569; font-weight: bold; width: 50px; text-align: center;">Feature<br>Vector</div>
+        </div>
+
+        <!-- Right Panel: Feature Matrix -->
+        <div class="box" style="flex: 1.35; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4; position: relative;">
+            <div class="box-title">Feature Engineering Matrix</div>
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 6px; font-size: 9px; width: 30%;">Feature Group</th>
+                    <th style="padding: 6px; font-size: 9px;">Example Features</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">Permission</td>
+                    <td style="padding: 6px;">SMS, overlay, accessibility, contacts</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">Code/API</td>
+                    <td style="padding: 6px;">crypto, reflection, HTTP, WebView</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">Network</td>
+                    <td style="padding: 6px;">URLs, IPs, HTTP endpoints, C2-like paths</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">Identity</td>
+                    <td style="padding: 6px;">package mismatch, certificate mismatch</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">UI/Content</td>
+                    <td style="padding: 6px;">KYC text, fake login fields, BOI keywords</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">Obfuscation</td>
+                    <td style="padding: 6px;">encrypted strings, packer, junk code</td>
+                </tr>
+            </table>
+            
+            <div style="position: absolute; bottom: -20px; left: 50%; font-size: 14px; color: #475569; font-weight: bold;">↓</div>
+            <div style="position: absolute; bottom: -22px; left: 55%; font-size: 9px; color: #475569; font-weight: bold;">Trigger Plan</div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Sections: Toolchain + Artifacts + Strip -->
+    <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+        
+        <!-- Toolchain -->
+        <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+            <span style="font-size: 9px; font-weight: bold; color: var(--text-main); margin-right: 4px;">Toolchain:</span>
+            <span class="badge" style="background: #005BAC; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: white;">JADX</span>
+            <span class="badge" style="background: #00A676; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: white;">AndroGuard</span>
+            <span class="badge" style="background: #E85D04; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: white;">APKiD</span>
+            <span class="badge" style="background: #DC2626; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: white;">YARA</span>
+            <span class="badge" style="background: #0B1F3A; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: white;">capa / Ghidra</span>
+        </div>
+        
+        <!-- Artifacts -->
+        <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+            <span style="font-size: 9px; font-weight: bold; color: var(--text-main); margin-right: 4px;">Output Artifacts:</span>
+            <span class="badge" style="background: #FFFDF8; border: 1px solid #D8D2C4; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: #0B1F3A; font-family: var(--font-code);">📄 manifest.json</span>
+            <span class="badge" style="background: #FFFDF8; border: 1px solid #D8D2C4; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: #0B1F3A; font-family: var(--font-code);">📊 static_features.json</span>
+            <span class="badge" style="background: #FFFDF8; border: 1px solid #D8D2C4; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: #0B1F3A; font-family: var(--font-code);">⚠️ suspicious_apis.json</span>
+            <span class="badge" style="background: #FFFDF8; border: 1px solid #D8D2C4; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: #0B1F3A; font-family: var(--font-code);">🛡️ iocs.json</span>
+            <span class="badge" style="background: #FFFDF8; border: 1px solid #D8D2C4; border-radius: 4px; padding: 3px 8px; font-size: 8px; font-weight: bold; color: #0B1F3A; font-family: var(--font-code);">⚙️ trigger_plan.json</span>
+        </div>
+        
+        <!-- Philosophy Strip -->
+        <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 8px 16px; text-align: center; border-radius: 4px; margin-top: 4px;">
+            <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+                Static output becomes the first layer of the <span style="color:#00A676;">APK Fraud Evidence Graph</span>.
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>7 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 8: Dynamic Analysis -->
+<div class="slide">
+    <div class="top-label orange" style="background-color: #FFF3E8; border-color: #E85D04; color: #E85D04;">LAYER 2 — SELECTIVE DYNAMIC SANDBOX</div>
+    <h2 style="margin-bottom: 6px;">Dynamic Analysis Deep Dive: Triggered Runtime Validation</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK executes only high-risk or unclear APKs in a controlled Android environment where static findings drive targeted triggers such as fake OTP injection, overlay flows and sinkholed network capture.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Trigger Plan Table -->
+        <div class="box" style="flex: 1.15; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Trigger Plan Table</div>
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 6px; font-size: 9px; width: 45%;">Static Finding</th>
+                    <th style="padding: 6px; font-size: 9px;">Runtime Trigger</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">SMS receiver found</td>
+                    <td style="padding: 6px; color: #00A676; font-weight: bold;">Inject fake OTP SMS</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">Overlay permission found</td>
+                    <td style="padding: 6px; color: #E85D04; font-weight: bold;">Trigger overlay permission path</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">Accessibility service found</td>
+                    <td style="padding: 6px; color: #E85D04; font-weight: bold;">Open accessibility settings flow</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">BOI targeting found</td>
+                    <td style="padding: 6px; color: #005BAC; font-weight: bold;">Launch simulated BOI banking app</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px;">Network endpoint found</td>
+                    <td style="padding: 6px; color: #00A676; font-weight: bold;">Route traffic to sinkhole/MITM</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px;">Packer/anti-analysis found</td>
+                    <td style="padding: 6px; color: #DC2626; font-weight: bold;">Increase suspicion + analyst escalation</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Center Panel: Runtime Sandbox Workflow -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Runtime Workflow</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                <div class="flow-node" style="width:90%; padding:6px; background:#EAF4FF; border:1px solid #005BAC; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Install APK in Isolated Emulator</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#EAF8F0; border:1px solid #00A676; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Load Static Trigger Plan</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Inject Fake OTP / Open Permission Paths</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#EAF4FF; border:1px solid #005BAC; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Launch Simulated BOI App Environment</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#FDECEC; border:1px solid #DC2626; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Capture API Calls + Network + UI Behavior</div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569;">↓</div>
+                
+                <div class="flow-node" style="width:90%; padding:6px; background:#EAF8F0; border:1px solid #00A676; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">Update Evidence Graph with Runtime Confirmation</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Captured Evidence Log -->
+        <div class="box" style="flex: 1.25; display: flex; flex-direction: column; background: #101820; border: 1px solid #101820; padding: 0; overflow: hidden;">
+            <div style="background: #1F2937; padding: 8px 12px; font-family: var(--font-main); font-weight: 800; font-size: 10px; color: #D6DEE8; border-bottom: 1px solid #374151;">Runtime Evidence Log</div>
+            <pre style="background: transparent; color: #D6DEE8; font-size: 8px; padding: 12px; margin: 0; flex: 1; border-radius: 0; overflow-y: auto; line-height: 1.6;">
+<span style="color:#60A5FA;">[ADB]</span> Installed BOI_KYC_Update.apk in isolated emulator
+<span style="color:#F59E0B;">[TRIGGER]</span> Fake OTP injected: 582194
+<span style="color:#22C55E;">[FRIDA]</span> SmsReceiver.onReceive() invoked
+<span style="color:#F59E0B;">[UI]</span> SYSTEM_ALERT_WINDOW overlay requested
+<span style="color:#EF4444;">[NET]</span> POST /api/otp → non-bank endpoint
+<span style="color:#EF4444; font-weight:bold;">[RISK]</span> E1 runtime-confirmed: OTP exfiltration attempt
+<span style="color:#22C55E;">[GRAPH]</span> Evidence Graph updated with dynamic trace
+            </pre>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section: Safety Controls Panel -->
+    <div style="margin-top: 16px; background: #EAF4FF; border: 1px solid #005BAC; padding: 12px 16px; border-radius: 4px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-weight: 800; font-size: 11.5px; color: var(--boi-navy);">Sandbox Safety Controls</div>
+        
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="badge" style="background: #005BAC; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">Isolated Emulator</span>
+            <span class="badge" style="background: #00A676; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">No Real Credentials</span>
+            <span class="badge" style="background: #0B1F3A; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">Restricted Egress</span>
+            <span class="badge" style="background: #E85D04; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">Sinkholed C2</span>
+            <span class="badge" style="background: #6B7280; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">Hook Attempts Logged</span>
+            <span class="badge" style="background: #DC2626; border-radius: 4px; padding: 4px 8px; font-size: 8px; font-weight: bold; color: white;">Anti-Analysis = Risk Signal</span>
+        </div>
+        
+        <div style="font-size: 9px; color: var(--boi-navy); margin-top: 4px;">
+            <em>Note: If malware blocks hooks or detects sandboxing, that behavior becomes part of the risk evidence.</em>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>8 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 9: Evidence Graph -->
+<div class="slide">
+    <div class="top-label green" style="background-color: #EAF8F0; border-color: #00A676; color: #00A676;">CORE INNOVATION</div>
+    <h2 style="margin-bottom: 6px;">APK Fraud Evidence Graph: Proving Malicious Intent</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK links permissions, components, API calls, data sources, transformations, sinks and runtime traces into auditable fraud behavior chains.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Source-to-Sink Graph -->
+        <div class="box" style="flex: 1.15; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4; position: relative;">
+            <div class="box-title" style="margin-bottom: 4px;">E1: OTP Theft Source-to-Sink Chain</div>
+            <div style="font-size: 10px; font-weight: bold; color: var(--boi-blue); text-align: center; margin-bottom: 8px;">Source → Transform → Sink → Runtime Confirmation</div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px;">
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">SOURCE</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#EAF4FF; border:1px solid #005BAC; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">SMS_RECEIVED</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569; position:relative; left: 45px;">↓</div>
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">COMPONENT</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#FFFFFF; border:1px solid #0B1F3A; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">SmsReceiver.onReceive()</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569; position:relative; left: 45px;">↓</div>
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">TRANSFORM</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">extractOtp()</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569; position:relative; left: 45px;">↓</div>
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">TRANSFORM</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#FFF3E8; border:1px solid #E85D04; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">AES/Base64 encode</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569; position:relative; left: 45px;">↓</div>
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">SINK</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#FDECEC; border:1px solid #DC2626; color:#0B1F3A; margin:0; font-size:9px; font-weight:bold;">NetworkClient.post()</div>
+                </div>
+                <div class="flow-arrow" style="margin:0; font-size:12px; color:#475569; position:relative; left: 45px;">↓</div>
+                
+                <div style="display: flex; align-items: center; width: 100%; justify-content: center; margin:0;">
+                    <div style="width: 70px; text-align: right; padding-right: 10px; font-size: 7px; font-weight: bold; color: #475569;">DESTINATION</div>
+                    <div class="flow-node" style="width:160px; padding:6px; background:#101820; border:1px solid #101820; color:white; margin:0; font-size:9px; font-weight:bold;">unknown-c2.example/api/otp</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Center Panel: Attack Chain Examples -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">Attack Chain Examples</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px;">
+                
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid #005BAC; padding: 8px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 4px;">E1: OTP Theft</div>
+                    <div style="font-size: 8.5px; color: var(--text-muted); line-height: 1.4;">SMS → OTP regex → encryption → C2</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid #E85D04; padding: 8px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 4px;">E2: Overlay Phishing</div>
+                    <div style="font-size: 8.5px; color: var(--text-muted); line-height: 1.4;">Bank app launch → fake login UI → credential capture</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid #DC2626; padding: 8px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 4px;">E3: Accessibility Abuse</div>
+                    <div style="font-size: 8.5px; color: var(--text-muted); line-height: 1.4;">Screen-read → auto-click → unauthorized action</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border: 1px solid #D8D2C4; border-left: 4px solid #00A676; padding: 8px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 4px;">E4: Impersonation Risk</div>
+                    <div style="font-size: 8.5px; color: var(--text-muted); line-height: 1.4;">BOI branding → cert mismatch → non-bank domain</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Right Panel: Evidence JSON Object -->
+        <div class="box" style="flex: 1.25; display: flex; flex-direction: column; background: #101820; border: 1px solid #101820; padding: 0; overflow: hidden;">
+            <div style="background: #1F2937; padding: 8px 12px; font-family: var(--font-main); font-weight: 800; font-size: 10px; color: #D6DEE8; border-bottom: 1px solid #374151;">Evidence Object JSON</div>
+            <pre style="background: transparent; color: #D6DEE8; font-size: 8px; padding: 12px; margin: 0; flex: 1; border-radius: 0; overflow-y: auto; line-height: 1.6;">
+{
+  <span style="color:#60A5FA;">"evidence_id"</span>: <span style="color:#22C55E;">"E1"</span>,
+  <span style="color:#60A5FA;">"behavior"</span>: <span style="color:#22C55E;">"OTP Theft"</span>,
+  <span style="color:#60A5FA;">"source"</span>: <span style="color:#22C55E;">"SMS_RECEIVED"</span>,
+  <span style="color:#60A5FA;">"component"</span>: <span style="color:#22C55E;">"SmsReceiver.onReceive"</span>,
+  <span style="color:#60A5FA;">"transform"</span>: <span style="color:#22C55E;">"OTP extraction + encryption"</span>,
+  <span style="color:#60A5FA;">"sink"</span>: <span style="color:#22C55E;">"HTTP POST"</span>,
+  <span style="color:#60A5FA;">"destination"</span>: <span style="color:#22C55E;">"unknown C2"</span>,
+  <span style="color:#60A5FA;">"risk_contribution"</span>: <span style="color:#F59E0B;">30</span>,
+  <span style="color:#60A5FA;">"dynamic_status"</span>: <span style="color:#00A676;">"confirmed"</span>
+}
+            </pre>
+        </div>
+
+    </div>
+
+    <!-- Bottom Sections: Chips + Key Line -->
+    <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+        
+        <!-- Benefits Chips -->
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+            <span class="badge" style="background: #005BAC; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Explainable</span>
+            <span class="badge" style="background: #0B1F3A; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Auditable</span>
+            <span class="badge" style="background: #00A676; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Reduces Hallucination</span>
+            <span class="badge" style="background: #E85D04; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Reduces False Positives</span>
+            <span class="badge" style="background: #DC2626; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Supports Risk Score</span>
+            <span class="badge" style="background: #475569; border-radius: 12px; padding: 4px 12px; font-size: 9px; font-weight: bold; color: white;">Analyst-Verifiable</span>
+        </div>
+        
+        <!-- Key Philosophy Line -->
+        <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 10px 16px; text-align: center; border-radius: 4px;">
+            <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+                SurakshaAPK detects malicious intent by <span style="color:#00A676;">proving behavior chains</span> — <span style="color:#DC2626;">not by blindly flagging dangerous permissions</span>.
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>9 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 10: GenAI & Risk Scoring -->
+<div class="slide">
+    <div class="top-label green" style="background-color: #EAF8F0; border-color: #00A676; color: #00A676;">LAYER 3 & 4 — AI SYNTHESIS + RISK ENGINE</div>
+    <h2 style="margin-bottom: 6px;">GenAI Engine + Risk Scoring + Compliance Mapping</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">SurakshaAPK uses GenAI only to explain verified evidence and draft investigation narratives; final scoring and compliance mapping remain deterministic and auditable.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: GenAI Flow -->
+        <div class="box" style="flex: 1.1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title">GenAI Evidence Explanation Flow</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;">
+                
+                <div style="width: 90%; background: #EAF4FF; border: 1px solid #005BAC; padding: 8px; border-radius: 4px; font-size: 8.5px; color: var(--boi-navy); line-height: 1.4;">
+                    <div style="font-weight: bold; margin-bottom: 4px;">Evidence Graph JSON</div>
+                    + Decompiled code snippets<br>
+                    + Dynamic trace summary<br>
+                    + IOCs / URLs / APIs
+                </div>
+                
+                <div class="flow-arrow" style="margin: 0; font-size: 14px; color: #475569;">↓</div>
+                
+                <div style="width: 90%; background: #EAF8F0; border: 1px solid #00A676; padding: 6px; border-radius: 4px; font-size: 9.5px; font-weight: bold; text-align: center; color: #00A676;">
+                    Local LLM
+                </div>
+                
+                <div class="flow-arrow" style="margin: 0; font-size: 14px; color: #475569;">↓</div>
+                
+                <div style="width: 90%; background: #FFF3E8; border: 1px solid #E85D04; padding: 8px; border-radius: 4px; font-size: 8.5px; color: var(--boi-navy); line-height: 1.4;">
+                    Threat summary<br>
+                    Function intent explanation<br>
+                    MITRE mapping<br>
+                    Actionable recommendations
+                </div>
+
+                <div style="margin-top: 10px; width: 90%; background: #FDECEC; border: 1px solid #DC2626; padding: 6px; border-radius: 4px; font-size: 8.5px; font-weight: bold; color: #DC2626; text-align: center;">
+                    LLM is an explanation assistant — not the final malware judge.
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Center Panel: Risk Scoring Model -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 4px;">Deterministic Risk Scoring</div>
+            <div style="font-size: 8.5px; color: var(--text-muted); margin-bottom: 8px;">
+                Risk Score = severity of behavior<br>
+                Confidence = strength of evidence
+            </div>
+            
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 4px; font-size: 8.5px; text-align: left;">Component</th>
+                    <th style="padding: 4px; font-size: 8.5px; text-align: right; width: 25%;">Weight</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Confirmed malicious behavior chain</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #005BAC;">30</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Runtime confirmation</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #00A676;">20</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Banking impersonation / targeting</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #E85D04;">15</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Sensitive data access / capture</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #E85D04;">15</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">C2 / network exfiltration risk</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #DC2626;">10</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Obfuscation / anti-analysis</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #475569;">5</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Authenticity mismatch</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; text-align: right; font-weight: bold; color: #475569;">5</td>
+                </tr>
+                <tr style="background: #F4EFE5; font-weight: bold;">
+                    <td style="padding: 4px;">Total</td>
+                    <td style="padding: 4px; text-align: right; color: var(--boi-navy);">100</td>
+                </tr>
+            </table>
+            
+            <div style="margin-top: 8px; background: #FDECEC; border: 1px solid #DC2626; padding: 6px; border-radius: 4px; text-align: center;">
+                <div style="font-size: 14px; font-weight: 800; color: #DC2626; line-height: 1;">87/100</div>
+                <div style="font-size: 9px; font-weight: 800; color: #DC2626; margin: 2px 0;">CRITICAL</div>
+                <div style="font-size: 8px; color: var(--boi-navy);">Confidence: 92% • Evidence: E1+E2+E3</div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Compliance Output -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 4px;">Compliance & Investigation Output</div>
+            <div style="font-size: 8px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.3;">
+                Mapped to relevant RBI/CERT-In incident response and security-control requirements.
+            </div>
+            
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+                
+                <div style="background: #EAF4FF; border-left: 3px solid #005BAC; padding: 6px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 9.5px; color: var(--boi-navy); margin-bottom: 2px;">CERT-In Draft</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">
+                        • incident type • timestamp<br>
+                        • affected system • IOC list<br>
+                        • technical summary • impact<br>
+                        • recommended action
+                    </div>
+                </div>
+                
+                <div style="background: #EAF8F0; border-left: 3px solid #00A676; padding: 6px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 9.5px; color: var(--boi-navy); margin-bottom: 2px;">RBI / Bank Security Mapping</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">
+                        • security-control relevance<br>
+                        • customer protection action<br>
+                        • evidence preservation<br>
+                        • analyst escalation
+                    </div>
+                </div>
+                
+                <div style="background: #FFF3E8; border-left: 3px solid #E85D04; padding: 6px; border-radius: 4px;">
+                    <div style="font-weight: 800; font-size: 9.5px; color: var(--boi-navy); margin-bottom: 2px;">MITRE Mapping</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">
+                        • mobile techniques<br>
+                        • behavior category<br>
+                        • family similarity if supported
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Sections: Guardrails + Key Line -->
+    <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+        
+        <!-- Guardrail Chips -->
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+            <span class="badge" style="background: #005BAC; border-radius: 4px; padding: 4px 10px; font-size: 8.5px; font-weight: bold; color: white;">GenAI does not run tools</span>
+            <span class="badge" style="background: #E85D04; border-radius: 4px; padding: 4px 10px; font-size: 8.5px; font-weight: bold; color: white;">GenAI does not assign final score</span>
+            <span class="badge" style="background: #00A676; border-radius: 4px; padding: 4px 10px; font-size: 8.5px; font-weight: bold; color: white;">Raw APK is not sent to cloud</span>
+            <span class="badge" style="background: #DC2626; border-radius: 4px; padding: 4px 10px; font-size: 8.5px; font-weight: bold; color: white;">No malware generation</span>
+        </div>
+        
+        <!-- Key Philosophy Line -->
+        <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 10px 16px; text-align: center; border-radius: 4px;">
+            <div style="font-weight: 800; font-size: 13px; color: var(--boi-navy);">
+                <span style="color:#00A676;">GenAI writes the explanation.</span> <span style="color:#E85D04;">Deterministic engines decide the score</span> and evidence mapping.
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>10 / 15</span>
+    </div>
+</div>
+
+<!-- SLIDE 11: Technical Stack -->
+<div class="slide">
+    <div class="top-label blue">TECHNICAL STACK</div>
+    <h2>Technical Stack: Modular & Bank-Ready</h2>
+    
+    <div class="grid-left-wide">
+        <!-- Left: Layered Stack -->
+        <div class="box blue">
+            <div class="box-title">Layered Architecture Stack</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="background:#F1F5F9; border:1px solid #CBD5E1; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-navy); border-radius:4px;">
+                    Dashboard<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="devicon-react-original colored"></i> React / <i class="devicon-nextjs-plain" style="color: black;"></i> Next.js</span>
+                </div>
+                <div style="background:#E0F2FE; border:1px solid #BAE6FD; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-blue); border-radius:4px;">
+                    API + Orchestrator<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="devicon-fastapi-plain colored"></i> FastAPI + <i class="fa-solid fa-layer-group"></i> Worker Queue</span>
+                </div>
+                <div style="background:#F0FDF4; border:1px solid #BBF7D0; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-green); border-radius:4px;">
+                    Static Engine<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="fa-solid fa-magnifying-glass"></i> JADX + AndroGuard + APKiD + YARA</span>
+                </div>
+                <div style="background:#FFF7ED; border:1px solid #FFEDD5; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-orange); border-radius:4px;">
+                    Dynamic Engine<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="devicon-android-plain colored"></i> Android Emulator + ADB + Frida + MITM/Sinkhole</span>
+                </div>
+                <div style="background:#FEF2F2; border:1px solid #FECACA; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-red); border-radius:4px;">
+                    Evidence + Risk<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="fa-solid fa-diagram-project"></i> Evidence Graph JSON + <i class="fa-solid fa-calculator"></i> Deterministic Scoring</span>
+                </div>
+                <div style="background:#F3F4F6; border:1px solid #E5E7EB; padding:8px; text-align:center; font-weight:bold; font-size:11px; color:var(--boi-navy); border-radius:4px;">
+                    GenAI + Reports<br><span style="font-weight:normal; font-size:9px; color:var(--text-muted);"><i class="fa-solid fa-microchip"></i> Ollama/llama.cpp + <i class="fa-solid fa-file-pdf"></i> PDF/JSON/SIEM/YARA Export</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Deployment & Matrix -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="box green">
+                <div class="box-title">Deployment Modes</div>
+                <div class="mini-card" style="border-left: 3px solid var(--boi-green);"><b>Mode 1:</b> Air-gapped bank lab (Maximum Privacy)</div>
+                <div class="mini-card" style="border-left: 3px solid var(--boi-orange);"><b>Mode 2:</b> Hybrid metadata-only cloud</div>
+                <div class="mini-card" style="border-left: 3px solid var(--boi-blue);"><b>Mode 3:</b> Research/demo mode</div>
+            </div>
+            
+            <div class="box orange" style="flex: 1;">
+                <div class="box-title">Open-Source Foundation</div>
+                <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+                    SurakshaAPK avoids proprietary black-box engines. By using industry-standard open-source tools (JADX, Frida, YARA), it ensures transparency, extensibility, and zero vendor lock-in for the bank.
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <span class="badge" style="background:#0F172A;"><i class="devicon-python-plain colored"></i> Python 3.10+</span>
+                    <span class="badge" style="background:#0F172A;"><i class="devicon-docker-plain colored"></i> Docker</span>
+                    <span class="badge" style="background:#0F172A;"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                    <span class="badge" style="background:#0F172A;"><i class="devicon-redis-plain colored"></i> Redis</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>11 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 12: Outputs & Explainability -->
+<div class="slide">
+    <div class="top-label blue" style="background-color: #EAF4FF; border-color: #005BAC; color: #005BAC;">ACTIONABLE OUTPUTS</div>
+    <h2 style="margin-bottom: 6px;">Output + Explainability + Bank Response</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 16px;">Every SurakshaAPK verdict is backed by evidence IDs and converted into actionable outputs for SOC, fraud operations, compliance teams and analysts.</div>
+    
+    <div style="display: flex; gap: 20px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Report Preview -->
+        <div class="box" style="flex: 0.9; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4; padding: 0; overflow: hidden; border: 1px solid #D8D2C4; box-shadow: 2px 2px 8px rgba(0,0,0,0.05);">
+            <div style="background: #0B1F3A; padding: 8px 12px; color: white; font-weight: bold; font-size: 10px; border-bottom: 2px solid #005BAC;">SurakshaAPK Investigation Report</div>
+            <div style="padding: 12px; font-size: 8px; color: var(--text-main); display: flex; flex-direction: column; gap: 8px;">
+                <div style="line-height: 1.4;">
+                    <strong>APK:</strong> BOI_KYC_Update.apk<br>
+                    <strong>SHA-256:</strong> 9f3a...c21b<br>
+                    <strong>Verdict:</strong> <span style="color: #DC2626; font-weight: bold;">CRITICAL</span><br>
+                    <strong>Risk Score:</strong> <span style="color: #E85D04; font-weight: bold;">87/100</span><br>
+                    <strong>Confidence:</strong> <span style="color: #00A676; font-weight: bold;">92%</span>
+                </div>
+                
+                <div style="line-height: 1.4;">
+                    <strong>Classification:</strong><br>
+                    Banking Trojan / Fake KYC APK
+                </div>
+                
+                <div style="line-height: 1.4;">
+                    <strong>Evidence:</strong><br>
+                    <span style="color: #005BAC; font-weight: bold;">E1:</span> OTP theft chain<br>
+                    <span style="color: #005BAC; font-weight: bold;">E2:</span> Fake overlay targeting BOI profile<br>
+                    <span style="color: #005BAC; font-weight: bold;">E3:</span> Non-bank C2 endpoint
+                </div>
+                
+                <div style="background: #FDECEC; padding: 6px; border-left: 2px solid #DC2626; line-height: 1.4;">
+                    <strong>Recommendation:</strong><br>
+                    Block IOCs + escalate to SOC + prepare CERT-In draft
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Stakeholder Matrix -->
+        <div class="box" style="flex: 1.3; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 8px;">Stakeholder Output Matrix</div>
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 6px; font-size: 9px; width: 30%; text-align: left;">Team</th>
+                    <th style="padding: 6px; font-size: 9px; text-align: left;">Output</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px; border-bottom: 1px solid #E5E7EB; color: var(--boi-navy);">SOC / Cybersecurity</td>
+                    <td style="padding: 6px; border-bottom: 1px solid #E5E7EB;">risk score, evidence IDs, APK hash, domains/IPs</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px; border-bottom: 1px solid #E5E7EB; color: var(--boi-navy);">Fraud Operations</td>
+                    <td style="padding: 6px; border-bottom: 1px solid #E5E7EB;">attack summary, fake KYC campaign signals, customer advisory</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px; border-bottom: 1px solid #E5E7EB; color: var(--boi-navy);">Compliance</td>
+                    <td style="padding: 6px; border-bottom: 1px solid #E5E7EB;">CERT-In draft, RBI security-control mapping, chain-of-custody</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 6px; border-bottom: 1px solid #E5E7EB; color: var(--boi-navy);">Analyst</td>
+                    <td style="padding: 6px; border-bottom: 1px solid #E5E7EB;">code locations, API traces, runtime evidence, manual review note</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 6px; border-bottom: 1px solid #E5E7EB; color: var(--boi-navy);">Response Teams</td>
+                    <td style="padding: 6px; border-bottom: 1px solid #E5E7EB;">YARA rule, SIEM JSON, blocklist recommendation</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Right Panel: IOC Snippets -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #101820; border: 1px solid #101820; padding: 0; overflow: hidden;">
+            <div style="background: #1F2937; padding: 8px 12px; font-family: var(--font-main); font-weight: 800; font-size: 9.5px; color: #D6DEE8; border-bottom: 1px solid #374151;">IOC / YARA / SIEM Exports</div>
+            <div style="display: flex; flex-direction: column; flex: 1; overflow-y: auto;">
+                
+                <pre style="background: transparent; color: #D6DEE8; font-size: 7.5px; padding: 10px; margin: 0; border-bottom: 1px dashed #374151;">
+{
+  <span style="color:#60A5FA;">"sha256"</span>: <span style="color:#22C55E;">"9f3a...c21b"</span>,
+  <span style="color:#60A5FA;">"domains"</span>: [<span style="color:#22C55E;">"unknown-c2.example"</span>],
+  <span style="color:#60A5FA;">"permissions"</span>: [<span style="color:#22C55E;">"RECEIVE_SMS"</span>, <span style="color:#22C55E;">"SYSTEM_ALERT_WINDOW"</span>],
+  <span style="color:#60A5FA;">"risk"</span>: <span style="color:#EF4444;">87</span>,
+  <span style="color:#60A5FA;">"confidence"</span>: <span style="color:#22C55E;">92</span>
+}
+                </pre>
+                
+                <pre style="background: transparent; color: #D6DEE8; font-size: 7.5px; padding: 10px; margin: 0; border-bottom: 1px dashed #374151;">
+rule <span style="color:#F59E0B;">Banking_APK_Overlay_OTP</span> {
+  strings:
+    $kyc = "KYC Update"
+    $sms = "SMS_RECEIVED"
+  condition:
+    $kyc and $sms
+}
+                </pre>
+                
+                <pre style="background: transparent; color: #D6DEE8; font-size: 7.5px; padding: 10px; margin: 0; line-height: 1.4;">
+Action:
+Block domain
+Alert SOC
+Preserve APK evidence
+                </pre>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Note -->
+    <div style="margin-top: 16px; background: #EAF8F0; border: 1px solid #00A676; padding: 12px 16px; border-radius: 4px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-weight: 800; font-size: 11px; color: var(--boi-navy);">
+            Example Verdict
+            <span style="margin-left: 8px; font-weight: normal;">Risk Score: <span style="color:#DC2626; font-weight: bold;">87/100</span> | Confidence: <span style="color:#00A676; font-weight: bold;">92%</span></span>
+        </div>
+        <div style="font-size: 9.5px; color: var(--text-main); font-weight: 600; line-height: 1.4;">
+            <span style="color:#005BAC;">E1:</span> SMS OTP theft chain confirmed<br>
+            <span style="color:#005BAC;">E2:</span> Fake overlay targets BOI profile<br>
+            <span style="color:#005BAC;">E3:</span> Credentials sent to non-bank endpoint
+        </div>
+        <div style="font-size: 10.5px; color: #DC2626; font-weight: bold; margin-top: 2px;">
+            Action: Critical SOC escalation + IOC blocking + CERT-In/RBI-ready incident draft
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>12 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 13: Dataset & Validation -->
+<div class="slide">
+    <div class="top-label blue" style="background-color: #EAF4FF; border-color: #005BAC; color: #005BAC;">DATASET + VALIDATION</div>
+    <h2 style="margin-bottom: 6px;">Dataset Analysis, Validation Plan & Safe Obfuscation Test</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 12px;">SurakshaAPK will be validated using official bank baselines, benign applications, controlled synthetic fraud APKs, public malware datasets and pilot samples under safe handling rules.</div>
+    
+    <div style="display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0;">
+        
+        <!-- Top Panel: Dataset Table -->
+        <div class="box" style="display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4; flex: 1.1;">
+            <div class="box-title" style="margin-bottom: 4px;">Dataset Sources Table</div>
+            <table style="font-size: 8px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 4px; font-size: 8.5px; width: 28%; text-align: left;">Dataset / Source</th>
+                    <th style="padding: 4px; font-size: 8.5px; width: 47%; text-align: left;">Purpose</th>
+                    <th style="padding: 4px; font-size: 8.5px; width: 25%; text-align: left;">Handling</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Official BOI app metadata</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Known-good baseline: package, domains, certificate, app identity</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Public/bank profile</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Benign finance apps</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">False-positive testing against legitimate apps</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Hashes + extracted features</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB; color: #E85D04;">Synthetic controlled fraud APKs</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Safe validation for OTP theft, overlay, fake KYC, sinkholed C2</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Controlled lab only</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Public Android malware datasets</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Static feature validation and behavior-pattern comparison</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Legal access only</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Public threat intelligence reports</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Scam templates, malware behavior, IOCs, phishing patterns</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Public sources</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB; color: #005BAC;">Bank-provided pilot samples</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Real-world validation during pilot</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; color: #00A676; font-weight: bold;">Encrypted quarantine + chain-of-custody</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Middle Section: Features & Metrics -->
+        <div style="display: flex; gap: 20px; flex: 1;">
+            
+            <!-- Left: Feature Analysis Matrix -->
+            <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #EAF4FF; border-top-color: #005BAC; border: 1px solid #005BAC;">
+                <div class="box-title" style="margin-bottom: 8px; color: var(--boi-navy);">Features Analyzed Per APK</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Package</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Certificate</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Permissions</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">APIs</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Strings/URLs</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">UI Text</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Obfuscation</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Network IOCs</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Dynamic Traces</span>
+                    <span class="badge" style="background: white; border: 1px solid #005BAC; color: #0B1F3A; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Ground Truth</span>
+                </div>
+            </div>
+
+            <!-- Right: Validation Metrics -->
+            <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #EAF8F0; border-top-color: #00A676; border: 1px solid #00A676;">
+                <div class="box-title" style="margin-bottom: 8px; color: var(--boi-navy);">Validation Metrics</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;">
+                    <span class="badge" style="background: #005BAC; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Static Triage Precision</span>
+                    <span class="badge" style="background: #00A676; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Recall</span>
+                    <span class="badge" style="background: #E85D04; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">False Positive Rate</span>
+                    <span class="badge" style="background: #0B1F3A; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Dynamic Trigger Success</span>
+                    <span class="badge" style="background: #475569; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Average Triage Time</span>
+                    <span class="badge" style="background: #00A676; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Report Correctness</span>
+                    <span class="badge" style="background: #005BAC; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Analyst Agreement</span>
+                </div>
+                <div style="font-size: 8.5px; font-weight: bold; color: #DC2626; border-top: 1px solid rgba(220, 38, 38, 0.2); padding-top: 6px; margin-top: auto;">
+                    Metrics will be reported after prototype validation; no unverified accuracy claims.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Section: Safe Obfuscation Test -->
+    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-weight: 800; font-size: 11px; color: var(--boi-navy);">Safe Obfuscation Robustness Test Flow</div>
+        
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%; gap: 6px;">
+            <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 8px 12px; border-radius: 4px; font-size: 9px; font-weight: bold; color: #0B1F3A; text-align: center;">Controlled Synthetic APK</div>
+            <div style="font-size: 14px; color: #475569;">→</div>
+            <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 8px 12px; border-radius: 4px; font-size: 9px; font-weight: bold; color: #0B1F3A; text-align: center;">Rename classes + encode strings + add junk code</div>
+            <div style="font-size: 14px; color: #475569;">→</div>
+            <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 8px 12px; border-radius: 4px; font-size: 9px; font-weight: bold; color: #0B1F3A; text-align: center;">Same behavior chain preserved</div>
+            <div style="font-size: 14px; color: #475569;">→</div>
+            <div style="background: #0B1F3A; border: 1px solid #0B1F3A; padding: 8px 12px; border-radius: 4px; font-size: 9px; font-weight: bold; color: white; text-align: center;">SurakshaAPK detects source-to-sink chain</div>
+        </div>
+        
+        <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 6px; text-align: center; border-radius: 4px; margin-top: 4px;">
+            <div style="font-weight: bold; font-size: 10px; color: #DC2626;">
+                No deployable malware is generated; only controlled synthetic samples are used for robustness testing.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>13 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 14: Validation & Feasibility -->
+<div class="slide">
+    <div class="top-label navy" style="background-color: #ECEFF5; border-color: #0B1F3A; color: #0B1F3A;">VALIDATION + DIFFERENTIATION</div>
+    <h2 style="margin-bottom: 6px;">Research Foundation, Comparison & Feasibility</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 12px;">SurakshaAPK builds on established Android malware analysis concepts, adds bank-specific fraud intelligence, and follows a realistic MVP-to-pilot development path.</div>
+    
+    <div style="display: flex; gap: 16px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Research Foundation -->
+        <div class="box" style="flex: 1.1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 8px;">Research Foundation</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; overflow-y: auto;">
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #005BAC; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">MITRE ATT&CK Mobile</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">Maps Android malware behaviors such as SMS access, overlay abuse, accessibility misuse and C2 communication.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #00A676; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Hybrid Static + Dynamic Analysis</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">Static triage extracts evidence; selective dynamic validation confirms high-risk behavior.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #E85D04; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Source-to-Sink / Dataflow Analysis</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">Connects sensitive data sources to transformations and network sinks.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #0B1F3A; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">LLM-Assisted Code Explanation</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">Uses GenAI to summarize verified evidence and analyst reports, not to blindly decide malware.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #DC2626; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Banking Trojan Behavior Patterns</div>
+                    <div style="font-size: 8px; color: var(--text-main); line-height: 1.3;">Behavior-first similarity: Anatsa-like, Cerberus-like, SpyNote-like, EventBot-like only when supported by evidence.</div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Center Panel: Comparison Table -->
+        <div class="box" style="flex: 1.5; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 6px;">Comparison Table</div>
+            <table style="font-size: 7.5px; flex: 1; border-collapse: collapse;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 4px; text-align: left;">Capability</th>
+                    <th style="padding: 4px; text-align: left; background: #005BAC;">SurakshaAPK</th>
+                    <th style="padding: 4px; text-align: left;">MobSF</th>
+                    <th style="padding: 4px; text-align: left;">VirusTotal</th>
+                    <th style="padding: 4px; text-align: left;">Joe Sandbox</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Static APK analysis</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Partial/indirect</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Yes</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Dynamic behavior</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Selective triggered validation</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Limited</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No local sandbox</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Advanced</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Local/private deployment</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Usually commercial/cloud</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Bank Profile Adapter</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Evidence Graph</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Limited</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Behavior logs</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">GenAI explanation</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">Limited</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">RBI/CERT-In-ready outputs</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; font-weight: bold; background: #EAF8F0;">Yes</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB;">No</td>
+                </tr>
+            </table>
+            
+            <div style="font-size: 8px; color: var(--boi-navy); font-weight: bold; background: #EAF4FF; padding: 6px; border-left: 2px solid #005BAC; margin-top: 8px; line-height: 1.3;">
+                SurakshaAPK does not replace existing tools; it integrates reverse-engineering evidence into a bank-specific, GenAI-assisted investigation and reporting workflow.
+            </div>
+        </div>
+
+        <!-- Right Panel: Feasibility -->
+        <div class="box" style="flex: 1.2; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 6px;">Feasibility & Challenges</div>
+            <table style="font-size: 7.5px; border-collapse: collapse; margin-bottom: 12px;">
+                <tr style="background: var(--boi-navy); color: white;">
+                    <th style="padding: 4px; text-align: left; width: 35%;">Challenge</th>
+                    <th style="padding: 4px; text-align: left;">Mitigation</th>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">LLM hallucination</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; background: #EAF8F0;">LLM explains only verified evidence; scoring is deterministic</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">False positives</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; background: #EAF8F0;">Attack-chain scoring + BOI known-good baseline</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Dynamic evasion</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; background: #EAF8F0;">Static-driven triggers + anti-analysis behavior treated as risk signal</td>
+                </tr>
+                <tr style="background: #F4EFE5;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Privacy/legal concerns</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; background: #EAF8F0;">Local/offline default + encrypted quarantine + metadata-only cloud option</td>
+                </tr>
+                <tr style="background: #FFFFFF;">
+                    <td style="font-weight:bold; padding: 4px; border-bottom: 1px solid #E5E7EB;">Build scope</td>
+                    <td style="padding: 4px; border-bottom: 1px solid #E5E7EB; background: #EAF8F0;">Static MVP first, selective dynamic validation next</td>
+                </tr>
+            </table>
+
+            <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 6px;">Prototype Path</div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="background: #EAF8F0; border-left: 3px solid #00A676; padding: 6px; border-radius: 4px; font-size: 8.5px; color: var(--text-main); font-weight: bold;">
+                    [MVP] → Static triage + Evidence Graph + report
+                </div>
+                <div style="background: #FFF3E8; border-left: 3px solid #E85D04; padding: 6px; border-radius: 4px; font-size: 8.5px; color: var(--text-main); font-weight: bold;">
+                    [Next] → Fake OTP + simulated BOI app + sinkhole validation
+                </div>
+                <div style="background: #EAF4FF; border-left: 3px solid #005BAC; padding: 6px; border-radius: 4px; font-size: 8.5px; color: var(--text-main); font-weight: bold;">
+                    [Pilot] → Bank samples + analyst feedback + campaign clustering
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section: Key Philosophy Line -->
+    <div style="margin-top: 12px; background: #EAF8F0; border: 1px solid #00A676; padding: 10px 16px; text-align: center; border-radius: 4px;">
+        <div style="font-weight: 800; font-size: 12.5px; color: var(--boi-navy);">
+            Prototype path: <span style="color:#00A676;">fast static triage first</span>, <span style="color:#E85D04;">selective dynamic validation next</span>, bank pilot after validation.
+        </div>
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>14 / 15</span>
+    </div>
+</div>
+
+
+<!-- SLIDE 15: Final Outcome -->
+<div class="slide">
+    <div class="top-label green" style="background-color: #EAF8F0; border-color: #00A676; color: #00A676;">FINAL OUTCOME</div>
+    <h2 style="margin-bottom: 6px;">Demo Strategy, Use Cases & Expected Impact</h2>
+    <div class="subtitle" style="font-size: 13px; margin-bottom: 12px;">SurakshaAPK turns suspicious APKs into explainable evidence, risk scores, investigation reports and defensive actions for bank SOC, fraud and compliance teams.</div>
+    
+    <div style="display: flex; gap: 16px; flex: 1; min-height: 0;">
+        
+        <!-- Left Panel: Demo Workflow -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 4px;">Live Demo Workflow</div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; overflow-y: auto; flex: 1; padding: 2px 0;">
+                <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Upload BOI_KYC_Update.apk</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Static triage extracts manifest, APIs, URLs and certificate signals</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Evidence Graph shows OTP / overlay / impersonation chain</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #FDECEC; border: 1px solid #DC2626; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Risk engine generates score + confidence</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Local GenAI creates analyst report</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Export IOCs, YARA, SIEM JSON and CERT-In/RBI-ready draft</div>
+                <div style="font-size: 10px; color: #475569;">↓</div>
+                <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 8px; color: #0B1F3A; width: 90%; text-align: center;">Optional controlled dynamic validation with fake OTP + sinkhole</div>
+            </div>
+            <div style="background: #FFF3E8; border-left: 3px solid #E85D04; padding: 4px 6px; font-size: 8px; font-weight: bold; color: var(--boi-navy); margin-top: 6px;">
+                Primary live demo: fast static triage.<br>
+                Dynamic validation: selective, controlled and safety-bounded.
+            </div>
+        </div>
+
+        <!-- Center Panel: Use Cases -->
+        <div class="box" style="flex: 1.1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 6px;">Bank Use Cases</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1;">
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #005BAC; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Bank SOC Triage</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Analyze suspicious APKs reported by customers or threat feeds.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #E85D04; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Fraud Operations</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Identify fake KYC/loan campaigns and customer-risk patterns.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #00A676; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Defensive Blocking</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Export hashes, domains, IPs, YARA rules and SIEM JSON.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #0B1F3A; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Compliance & Inv.</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Generate CERT-In/RBI-ready drafts with evidence IDs.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #DC2626; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">Customer Advisory</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Create warnings for ongoing fake APK campaigns.</div>
+                </div>
+                
+                <div style="background: #FFFFFF; border-left: 3px solid #475569; padding: 6px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 800; font-size: 9px; color: var(--boi-navy); margin-bottom: 2px;">MDM / BYOD</div>
+                    <div style="font-size: 7.5px; color: var(--text-main); line-height: 1.2;">Screen employee-device apps for spyware/fake banking APKs.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Panel: Impact + Roadmap -->
+        <div class="box" style="flex: 1; display: flex; flex-direction: column; background: #FFFDF8; border-top-color: #D8D2C4;">
+            <div class="box-title" style="margin-bottom: 6px;">Impact & Roadmap</div>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;">
+                <span class="badge" style="background: #005BAC; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Faster APK Triage</span>
+                <span class="badge" style="background: #00A676; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Reduced Analyst Workload</span>
+                <span class="badge" style="background: #E85D04; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Lower False Positives</span>
+                <span class="badge" style="background: #DC2626; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Better Fraud Prevention</span>
+                <span class="badge" style="background: #0B1F3A; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Privacy-First Deployment</span>
+                <span class="badge" style="background: #475569; color: white; padding: 4px 8px; font-size: 8px; font-weight: bold; border-radius: 4px;">Bank-Ready Reports</span>
+            </div>
+
+            <div style="font-weight: 800; font-size: 10px; color: var(--boi-navy); margin-bottom: 6px;">Development Roadmap</div>
+            <div style="display: flex; flex-direction: column; gap: 4px; flex: 1;">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 3px 6px; border-radius: 4px; font-size: 7.5px; font-weight: bold; color: var(--boi-navy); flex: 1; text-align: center;">Idea</div>
+                    <div style="font-size: 10px; color: #475569;">→</div>
+                    <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 3px 6px; border-radius: 4px; font-size: 7.5px; font-weight: bold; color: var(--boi-navy); flex: 1.5; text-align: center;">Static MVP</div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 10px; color: #475569;">↓</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <div style="background: #FFF3E8; border: 1px solid #E85D04; padding: 3px 6px; border-radius: 4px; font-size: 7.5px; font-weight: bold; color: var(--boi-navy); flex: 1; text-align: center;">GenAI + Score</div>
+                    <div style="font-size: 10px; color: #475569;">←</div>
+                    <div style="background: #FDECEC; border: 1px solid #DC2626; padding: 3px 6px; border-radius: 4px; font-size: 7.5px; font-weight: bold; color: var(--boi-navy); flex: 1.5; text-align: center;">Dynamic Validation</div>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="font-size: 10px; color: #475569;">↓</div>
+                </div>
+                <div style="background: #0B1F3A; border: 1px solid #0B1F3A; padding: 4px 8px; border-radius: 4px; font-size: 8px; font-weight: bold; color: white; text-align: center;">
+                    Bank Pilot
+                </div>
+            </div>
+            
+            <div style="font-size: 7.5px; color: var(--text-main); border-top: 1px solid #E5E7EB; padding-top: 6px; margin-top: 6px;">
+                <b>Future:</b> analyst feedback loop, campaign clustering and PSB profile expansion.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Section: Why Shortlist & Closing -->
+    <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 6px;">
+        
+        <div style="background: #EAF4FF; border: 1px solid #005BAC; padding: 8px 12px; text-align: center; border-radius: 4px;">
+            <div style="font-weight: 800; font-size: 10.5px; color: var(--boi-navy);">
+                Why shortlist: Direct PS1 alignment • Evidence-first GenAI • BOI-specific profile • Feasible MVP • Actionable bank outputs
+            </div>
+        </div>
+        
+        <div style="background: #EAF8F0; border: 1px solid #00A676; padding: 10px 16px; text-align: center; border-radius: 4px;">
+            <div style="font-weight: 800; font-size: 13.5px; color: var(--boi-navy);">
+                SurakshaAPK helps banks move from reactive manual APK analysis to <span style="color:#00A676;">proactive, automated, evidence-based fraud defense</span>.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <span>SurakshaAPK • PSB Cybersecurity, Fraud & AI Hackathon 2026 • PS1</span>
+        <span>15 / 15</span>
+    </div>
+</div>
+
+</body>
+</html>

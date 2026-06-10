@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGIS Local Analysis Console</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050508;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-container {
+            /* width: 580px; Removed fixed width to allow natural expansion */
+            display: inline-block;
+            background-color: #0a0a10;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            /* Softer border for light background */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 1px 5px rgba(0, 0, 0, 0.1);
+            /* Softer shadow for cream background */
+            overflow: hidden;
+            white-space: nowrap;
+            /* Prevent awkward wrapping for command */
+        }
+
+        .terminal-header {
+            background-color: #10101a;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .mac-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mac-buttons span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .close {
+            background-color: #ff5f56;
+        }
+
+        .minimize {
+            background-color: #ffbd2e;
+        }
+
+        .maximize {
+            background-color: #27c93f;
+        }
+
+        .terminal-title {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            left: 0;
+            color: #94a3b8;
+            font-size: 18px;
+            /* Increased from 14px */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .terminal-body {
+            padding: 32px;
+            /* Increased padding */
+            color: #f8fafc;
+            font-size: 26px;
+            /* Increased significantly from 15px so it's readable on PPT */
+            line-height: 1.6;
+        }
+
+        .command {
+            color: #10b981;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .output-line {
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .output-highlight {
+            color: #f8fafc;
+        }
+
+        .evidence {
+            color: #f59e0b;
+        }
+
+        .critical {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .timestamp {
+            color: #64748b;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="mac-buttons">
+                <span class="close"></span>
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+            </div>
+            <div class="terminal-title">Prototype Console Preview</div>
+        </div>
+        <div class="terminal-body">
+            <div class="command">$ aegis analyze BOI_KYC_Update.apk --profile boi --mode local</div>
+
+            <div class="output-line"><span class="timestamp">[00:00]</span> SHA-256 calculated</div>
+            <div class="output-line"><span class="timestamp">[00:02]</span> Static scan: manifest + permissions parsed
+            </div>
+            <div class="output-line"><span class="timestamp">[00:04]</span> Bank profile loaded: <span
+                    class="output-highlight">com.boi.ua.android</span></div>
+            <div class="output-line evidence"><span class="timestamp">[00:06]</span> Evidence E1: SMS OTP access
+                detected</div>
+            <div class="output-line evidence"><span class="timestamp">[00:08]</span> Evidence E2: overlay / fake login
+                behavior</div>
+            <div class="output-line evidence"><span class="timestamp">[00:10]</span> Evidence E3: suspicious non-bank
+                endpoint</div>
+            <div class="output-line"><span class="timestamp">[00:12]</span> Risk Score: <span
+                    class="critical">87/100</span> | Confidence: 92%</div>
+            <div class="output-line"><span class="timestamp">[00:13]</span> Verdict: <span class="critical">CRITICAL
+                    Banking APK Fraud</span></div>
+            <div class="output-line"><span class="timestamp">[00:15]</span> Exported: report.pdf | iocs.json |
+                yara_rule.yar</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

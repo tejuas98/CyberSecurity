@@ -1,53 +1,51 @@
-# Project AEGIS (Automated Engine for Generative Intelligence & Security)
+# Project AEGIS v3.0
 
-**Project AEGIS** is a next-generation cybersecurity platform designed for the **Bank of India (BOI) CyberShield Hackathon 2026**. By bridging standard, highly rigorous reverse-engineering tools (such as Frida, JADX, and Apktool) with the semantic reasoning capabilities of local Large Language Models (LLMs), AEGIS automates Android malware decompilation, dynamic execution hooks, and threat intelligence synthesis.
+> **BOI CyberShield Hackathon 2026** - Problem Statement 1 Submission  
+> Developed by: Tejas  
+> Institution: SSGBCE, Bhusawal (DBATU affiliated)
+
+## Evidence-First GenAI Automated Malware Investigation
+
+AEGIS is an automated Android malware analysis system designed specifically to detect fraudulent banking applications (APKs) that target bank customers via phishing, SMS, WhatsApp, and overlay attacks. 
+
+Unlike traditional platforms that rely solely on static signatures or generic dynamic sandboxes, AEGIS uses a **Bank Profile Adapter** and an **APK Fraud Evidence Graph** to deterministicly map malicious behavior. A local, privacy-first GenAI model (Llama-3-8B) is then used to explain the evidence and generate actionable, regulation-ready compliance reports.
+
+### Key Capabilities
+
+- **Bank Profile Adapter:** Replaces generic analysis with targeted impersonation detection. For Bank of India, the profile is strictly configured around `com.boi.ua.android`.
+- **Evidence-First Detection:** Generates a Fraud Evidence Graph by linking API calls, permissions, and network sinks (e.g., SMS read → encrypted → sent to unknown C2).
+- **Selective Dynamic Validation:** Uses an asynchronous, triggered sandbox to inject synthetic OTPs and simulate bank applications, capturing high-fidelity runtime evidence without claiming to defeat all anti-emulation.
+- **Air-Gapped GenAI Synthesis:** Uses a local Llama-3-8B model by default to ensure zero sensitive bank data leaves the organizational perimeter.
+- **Automated Compliance:** Maps observed MITRE ATT&CK techniques directly to RBI IT/Cybersecurity Controls and CERT-In reporting fields.
+
+### Architecture Workflow
+
+1. **Intake & Triage:** APK is ingested, hashed, and metadata is extracted.
+2. **Deterministic Orchestrator:** Python pipeline runs JADX/AndroGuard to build the Evidence Graph.
+3. **Selective Dynamic Validation:** High-risk samples are routed to a containerized sandbox for runtime confirmation.
+4. **Evidence-Based Risk Scoring:** A 0-100 score is computed purely on the deterministic evidence chains.
+5. **AI Synthesis:** The local LLM explains the evidence, translates technical findings into actionable business intelligence, and drafts the compliance reports.
+
+### Local Development Setup
+
+*Note: The full source code for the AEGIS orchestrator, frontend dashboard, and containerized sandbox is available to hackathon evaluators upon request during the shortlisting phase to maintain proprietary integrity prior to the final presentation.*
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/tejuas98/bank-of-india.git
+cd bank-of-india
+
+# 2. Launch the Web Interface Prototype
+# The frontend dashboard showcasing the user flow and risk scoring visualization.
+open index.html
+```
+
+### Validation Targets
+
+Our prototype benchmarks evaluate robustness against behavior-preserving obfuscated APKs:
+- **Static Triage Precision Target:** >85%
+- **Dynamic Trigger Success Target:** >80% (on controlled samples)
+- **False Positive Rate Target:** <5% (on legitimate finance applications)
 
 ---
-
-## 🚀 Key Features
-
-- **Asynchronous Event-Driven Architecture:** Asynchronous microservices pipeline scaled with FastAPI, RabbitMQ/Kafka, and ephemeral analysis containers.
-- **AI-Driven Code De-obfuscation:** Automates Smali/Java reverse engineering by sending obfuscated bytecode fragments to local LLMs (e.g., Llama-3-8B) to semantic-map variables and understand underlying code logic.
-- **Dynamic Hooking & SSL Pinning Bypass:** Automatically injects Frida instrumentations at app startup to hook `OkHttpClient` and `TrustManager` APIs, bypassing certificate pinning to capture raw C2 server communications.
-- **AI Smart Monkey UI Fuzzing:** Utilizes computer vision and generative layouts to fill out UI fields intelligently using a pre-seeded test data library (mock accounts, OTPs, credentials).
-- **MITRE ATT&CK Risk Scoring:** Aggregates threat logs and maps patterns into a math-normalized 0–100 risk score matrix.
-- **Docker-Isolated Ingestion Boundary:** Air-gapped privacy boundary executing raw APK analyses locally, purging the binaries immediately after scan runs, and storing only lookup SHA-256 hashes.
-
----
-
-## 🎨 Premium Editorial Design & Visuals
-
-The web portal is built using a dark, minimalist newspaper design with clean structural grid borders, Inter/Playfair Display typography pairings, and structured visual maps:
-
-### 1. Visual Tech Stack Grid (Section 05)
-A visual deconstruction of the backend layers featuring descriptive metadata and clean inline SVG logos (including the vector Python logo).
-![Tech Stack Grid](assets/screenshots/tech_stack_grid.png)
-
-### 2. Threat Metric Dashboard (Section 03)
-Displays core threat statistics at a glance:
-![Threat Metric Dashboard](assets/screenshots/threat_metric_dashboard.png)
-
-### 3. Privacy Isolation Flowchart (Section 08)
-Visually details the three-step data retention boundaries:
-![Privacy Isolation Flowchart](assets/screenshots/privacy_isolation_flowchart.png)
-
----
-
-## 💻 Interactive Sandbox Simulator
-
-AEGIS incorporates a fully functional, browser-interactive sandbox simulator inside Section 05. It allows judges and bank analysts to pick a simulated target package and trigger the analysis pipeline live:
-
-### Scanning FakeBankUpdate.apk (High Risk - 92/100)
-Exposes the SMS Interceptor and Overlay injection patterns:
-![FakeBank Scan](assets/screenshots/sandbox_fakebank_scan.png)
-
-### Scanning CryptoWalletScanner.apk (Medium Risk - 55/100)
-Exposes the Clipboard Hijacker wallet swapper patterns:
-![Crypto Scan](assets/screenshots/sandbox_crypto_scan.png)
-
----
-
-## 🎬 Live Playback Demo
-
-Watch the real-time simulation showing console compilation logs, Frida cert-pinning bypasses, active thread score animations, and typed AI verdict reports:
-![Interactive Sandbox Playback](assets/screenshots/sandbox_recording.webp)
+*This repository contains the interactive presentation and UX prototype for the BOI CyberShield 2026 submission.*
