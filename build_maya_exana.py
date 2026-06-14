@@ -95,7 +95,7 @@ boilerplate_top = """<!DOCTYPE html>
             border-radius: 6px;
             padding: 16px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            overflow-y: auto;
+            overflow: hidden;
         }
         .box.indigo { border-top-color: var(--maya-indigo); }
         .box.green { border-top-color: var(--maya-green); }
@@ -290,7 +290,7 @@ slide_1 = """
                 
                 <div style="margin-top: 25px; font-size: 13px; line-height: 1.8;">
                     <strong>Theme:</strong> &nbsp;&nbsp;&nbsp;Examinations — secure, fair, intelligent<br>
-                    <strong>Builder:</strong> &nbsp;&nbsp;&lt;Your Name&gt; — Lead Developer & Architect (solo)<br>
+                    <strong>Builder:</strong> &nbsp;&nbsp;Tejas Jaware — Lead Developer & Architect (solo)<br>
                     <strong>Stack:</strong> &nbsp;&nbsp;&nbsp;&nbsp;Pure JavaScript · 0 dependencies · 65 tests · 0 API calls
                 </div>
             </div>
@@ -632,7 +632,7 @@ slide_5 = """
         
         <div class="grid-left-wide" style="margin-top: 15px;">
             <!-- Left: Architecture Flowchart -->
-            <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+            <div style="display: flex; flex-direction: column; align-items: center; position: relative; transform: scale(0.85); transform-origin: top center;">
                 <!-- Path -->
                 <div style="position: absolute; width: 2px; background: var(--maya-indigo); top: 0; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0;"></div>
                 
@@ -1087,7 +1087,7 @@ slide_10 = """
 
             <!-- Right: OMR Loop -->
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative; transform: scale(0.9); transform-origin: top center;">
                     <!-- Vertical Line -->
                     <div style="position: absolute; width: 2px; background: var(--maya-indigo); top: 10px; bottom: 10px; z-index: 0;"></div>
                     
@@ -1342,7 +1342,7 @@ slide_13 = """
         
         <!-- Links -->
         <div style="text-align: center; font-family: var(--font-code); font-size: 10px; color: var(--text-muted); margin-top: 15px;">
-            Repo: github.com/&lt;your-username&gt;/maya-exana &nbsp;&middot;&nbsp; Live demo: open index.html &nbsp;&middot;&nbsp; Verify: node tests/engine.test.js
+            Repo: github.com/tejuas98/maya-exana &nbsp;&middot;&nbsp; Live demo: open index.html &nbsp;&middot;&nbsp; Verify: node tests/engine.test.js
         </div>
 
         <div class="footer">
