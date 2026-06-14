@@ -1,0 +1,1358 @@
+import sys
+import os
+
+output_file = "/Users/toru/Projects and codes/project manager/maya_exana_deck.html"
+
+boilerplate_top = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maya-Exana — FAR AWAY 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-cream: #F4F6FB;
+            --text-main: #111827;
+            --text-muted: #475569;
+            --maya-navy: #0B1F3A;
+            --maya-indigo: #2541B2;
+            --maya-green: #0E9F6E;
+            --maya-saffron: #E8740C;
+            --maya-red: #DC2626;
+            --maya-light: #F4F6FB;
+            --maya-border: #D8DEEA;
+            --font-main: 'Calibri', 'Segoe UI', Arial, sans-serif;
+            --font-code: 'Consolas', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: #FFFFFF;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slide {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding: 40px 60px 70px 60px; padding-bottom: 45px !important; /* space for footer */
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF;
+        }
+
+        /* Slide Title */
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--maya-navy);
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 32px;
+            background-color: var(--maya-indigo);
+            color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Layout Grids */
+        .grid-3-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; min-height: 0; }
+        .grid-left-wide { display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; flex: 1; min-height: 0; }
+        .grid-center-wide { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 20px; flex: 1; min-height: 0; }
+        .grid-slide2 { display: flex; gap: 20px; flex: 1; min-height: 0; }
+
+        /* Common Elements */
+        .box {
+            background-color: #FFFFFF;
+            border: 1px solid var(--maya-border);
+            border-top: 3px solid var(--maya-navy);
+            border-radius: 6px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            overflow-y: auto;
+        }
+        .box.indigo { border-top-color: var(--maya-indigo); }
+        .box.green { border-top-color: var(--maya-green); }
+        .box.saffron { border-top-color: var(--maya-saffron); }
+
+        .box-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--maya-navy);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #E5E7EB;
+            padding-bottom: 6px;
+        }
+
+        /* Top Section Label */
+        .top-label {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #EAF4FF;
+            border: 1px solid var(--maya-indigo);
+            border-radius: 4px;
+            color: var(--maya-indigo);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .top-label.green { background-color: rgba(14, 159, 110, 0.1); border-color: var(--maya-green); color: var(--maya-green); }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: var(--maya-indigo);
+            color: white;
+            border-radius: 12px;
+            font-size: 9.5px;
+            font-weight: bold;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        .badge.green { background-color: var(--maya-green); }
+        .badge.saffron { background-color: var(--maya-saffron); }
+
+        /* Terminals */
+        .terminal {
+            background-color: #0B1F3A; /* dark navy */
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            font-family: var(--font-code);
+            font-size: 10px;
+        }
+        .term-header {
+            background-color: #081629;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .term-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .term-title { color: #94A3B8; font-family: var(--font-main); font-size: 10px; margin-left: 8px; font-weight: 600;}
+        .term-body { padding: 12px; color: #E2E8F0; line-height: 1.5; }
+
+        /* Flowchart / Chains */
+        .flow-node {
+            background-color: #F4F6FB;
+            border: 1px solid var(--maya-indigo);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .flow-title { font-size: 11px; font-weight: 800; margin-bottom: 4px; }
+        .flow-body { font-size: 9px; }
+        .flow-arrow { text-align: center; color: var(--text-muted); font-size: 14px; margin: 2px 0; font-weight: bold; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; font-size: 9px; }
+        th { background-color: var(--maya-navy); color: #FFFFFF; font-weight: 700; text-align: left; padding: 6px 8px; border: 1px solid var(--maya-border); }
+        td { padding: 6px 8px; border: 1px solid var(--maya-border); color: var(--text-main); }
+        tr:nth-child(even) td { background-color: var(--maya-light); }
+        tr:nth-child(odd) td { background-color: #FFFFFF; }
+
+        @media print {
+            @page { size: 16in 9in; margin: 0; }
+            html, body {
+                width: 16in !important;
+                height: 9in !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            .slide { 
+                page-break-after: always; 
+                page-break-inside: avoid; 
+                break-inside: avoid; 
+                height: 9in !important; 
+                width: 16in !important; 
+                border: none !important; 
+                box-shadow: none !important; 
+                overflow: hidden !important;
+                position: relative !important;
+                margin: 0 !important;
+            }
+            #floating-buttons-container { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <script>
+    async function downloadAllSlidesAsImages() {
+        const btn = document.getElementById('download-images-btn');
+        const pdfBtn = document.getElementById('download-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+        btn.disabled = true;
+        pdfBtn.style.display = 'none';
+
+        try {
+            const zip = new JSZip();
+            const slides = document.querySelectorAll('.slide');
+            
+            for (let i = 0; i < slides.length; i++) {
+                const slide = slides[i];
+                const canvas = await html2canvas(slide, { 
+                    scale: 8, 
+                    useCORS: true,
+                    backgroundColor: '#FFFFFF'
+                });
+                const imgData = canvas.toDataURL('image/png').split(',')[1];
+                zip.file(`Slide_${(i+1).toString().padStart(2, '0')}.png`, imgData, {base64: true});
+            }
+            
+            const content = await zip.generateAsync({type:"blob"});
+            saveAs(content, "Maya_Exana_Presentation.zip");
+        } catch (e) {
+            console.error(e);
+            alert("Error generating images.");
+        }
+
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        pdfBtn.style.display = 'inline-block';
+    }
+    </script>
+
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px;" id="floating-buttons-container">
+        <button id="download-images-btn" onclick="downloadAllSlidesAsImages()" style="padding: 10px 16px; background: #0E9F6E; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: var(--font-main); transition: transform 0.2s;">
+            <i class="fas fa-images"></i> Download High-Res Images (ZIP)
+        </button>
+        <button id="download-btn" onclick="window.print()" style="padding: 10px 16px; background: #2541B2; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: var(--font-main); transition: transform 0.2s;">
+            <i class="fas fa-file-pdf"></i> Download PDF
+        </button>
+    </div>
+"""
+
+boilerplate_bottom = """
+</body>
+</html>
+"""
+
+slide_1 = """
+    <!-- SLIDE 1: Title & Overview -->
+    <div class="slide">
+        <div class="top-label">FAR AWAY 2026 — India's International Youth Hackathon | Theme: Examinations</div>
+        
+        <div class="grid-left-wide" style="margin-top: 10px;">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <h1 style="font-size: 52px; font-weight: 800; color: var(--maya-navy); margin-bottom: 5px; line-height: 1;">MAYA-EXANA</h1>
+                <h3 style="font-size: 24px; color: var(--maya-indigo); margin-bottom: 25px; font-weight: 700;">Fair exams, by design.</h3>
+                
+                <p style="font-size: 15px; line-height: 1.5; color: var(--text-main); margin-bottom: 15px; max-width: 90%;">
+                    We stop exam cheating by making it pointless — not by surveilling students.<br><br>
+                    Every student gets a mathematically unique paper from one blueprint, so a leaked answer key fits no one.
+                </p>
+                
+                <div style="margin-top: 25px; font-size: 13px; line-height: 1.8;">
+                    <strong>Theme:</strong> &nbsp;&nbsp;&nbsp;Examinations — secure, fair, intelligent<br>
+                    <strong>Builder:</strong> &nbsp;&nbsp;&lt;Your Name&gt; — Lead Developer & Architect (solo)<br>
+                    <strong>Stack:</strong> &nbsp;&nbsp;&nbsp;&nbsp;Pure JavaScript · 0 dependencies · 65 tests · 0 API calls
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Terminal Preview -->
+                <div class="terminal" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                    <div class="term-header">
+                        <div class="term-dot" style="background:#ff5f56"></div>
+                        <div class="term-dot" style="background:#ffbd2e"></div>
+                        <div class="term-dot" style="background:#27c93f"></div>
+                        <div class="term-title">bash — maya-exana</div>
+                    </div>
+                    <div class="term-body" style="font-size: 11px;">
+                        <span style="color:#A3E635">$ maya-exana generate --blueprint quant.json --student NEET-100482</span><br><br>
+                        <span style="color:#94A3B8">[00:00]</span> seed derived  : xmur3 -> 128-bit sfc32<br>
+                        <span style="color:#94A3B8">[00:00]</span> paper built   : <span style="color:#F472B6">6</span> items, unique to NEET-100482<br>
+                        <span style="color:#94A3B8">[00:00]</span> answer key    : reproducible from seed (not stored)<br>
+                        <span style="color:#94A3B8">[00:01]</span> graded sample : <span style="color:#A3E635">5/6</span>  ->  misconception flagged on Q3<br>
+                        <span style="color:#94A3B8">[00:01]</span> item analysis : Q6 discrimination -0.26  ->  <span style="color:#F87171">BROKEN, flagged</span><br>
+                        <span style="color:#38BDF8">Done. 0 API calls. Verifiable offline.</span>
+                    </div>
+                </div>
+
+                <!-- Demo Output Card -->
+                <div class="box" style="padding: 15px;">
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px; font-weight: 600;">
+                        <div style="flex: 1 1 45%;"><i class="fas fa-check-circle" style="color:var(--maya-green);"></i> Unique paper per student</div>
+                        <div style="flex: 1 1 45%;"><i class="fas fa-check-circle" style="color:var(--maya-green);"></i> Auto-graded + misconception</div>
+                        <div style="flex: 1 1 45%;"><i class="fas fa-check-circle" style="color:var(--maya-green);"></i> 65/65 tests green</div>
+                        <div style="flex: 1 1 45%;"><i class="fas fa-check-circle" style="color:var(--maya-green);"></i> 0 API calls in trust path</div>
+                        <div style="flex: 1 1 100%; margin-top: 5px;"><i class="fas fa-file-pdf" style="color:var(--maya-indigo);"></i> Exports: 50 papers + master key (PDF)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Pipeline Strip -->
+        <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; background: var(--maya-light); border: 1px solid var(--maya-border); border-radius: 8px; padding: 15px 25px; font-weight: bold; font-size: 12px; color: var(--maya-navy);">
+            <div style="background: white; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--maya-indigo);">Blueprint</div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted);"></i>
+            <div style="background: white; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--maya-indigo);">Seeded RNG</div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted);"></i>
+            <div style="background: white; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--maya-indigo);">Unique Paper</div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted);"></i>
+            <div style="background: white; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--maya-indigo);">Auto-grade + CTT</div>
+            <i class="fas fa-arrow-right" style="color: var(--text-muted);"></i>
+            <div style="background: var(--maya-green); color: white; padding: 8px 16px; border-radius: 4px; border: 1px solid var(--maya-green);">Exports / OMR</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>1 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_2 = """
+    <!-- SLIDE 2: Problem Understanding -->
+    <div class="slide">
+        <h2>Exam Integrity Is Broken — Leaks Beat Surveillance</h2>
+        <div class="subtitle">A single static paper is worthless the moment one copy leaks; the industry's answer — invasive AI proctoring — is biased, costly, and increasingly banned.</div>
+        
+        <div class="grid-3-col">
+            <!-- Left: Kill Chain -->
+            <div class="box indigo">
+                <div class="box-title">Exam Leak Kill Chain</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div class="flow-node"><div class="flow-title">[01] Paper printed / set once</div><div class="flow-body">(one version for all)</div></div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><div class="flow-title">[02] One copy leaks</div><div class="flow-body">(insider, photo, courier)</div></div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><div class="flow-title">[03] Answer key spreads</div><div class="flow-body">on Telegram / WhatsApp</div></div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><div class="flow-title">[04] Thousands memorise</div><div class="flow-body">the same answers</div></div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><div class="flow-title">[05] Honest students</div><div class="flow-body">disadvantaged</div></div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node" style="border-color: var(--maya-red); background-color: rgba(220, 38, 38, 0.05);">
+                        <div class="flow-title" style="color: var(--maya-red);">[06] Re-test, litigation, lost trust</div>
+                    </div>
+                </div>
+                <div style="font-size: 8px; color: var(--text-muted); text-align: center; margin-top: 10px; font-style: italic;">Pattern based on widely reported 2024 entrance-exam leaks.</div>
+            </div>
+
+            <!-- Center: Phone Mockup -->
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <div style="width: 240px; height: 440px; border: 12px solid #1F2937; border-radius: 30px; background: white; position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                    <!-- Notch -->
+                    <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: #1F2937; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"></div>
+                    
+                    <div style="padding: 40px 15px 15px 15px; display: flex; flex-direction: column; height: 100%;">
+                        <div style="text-align: center; font-weight: 800; font-size: 14px; margin-bottom: 20px; color: var(--maya-navy); border-bottom: 1px solid #E5E7EB; padding-bottom: 10px;">ONLINE TEST PORTAL</div>
+                        
+                        <div style="background: #F3F4F6; padding: 15px; border-radius: 8px; text-align: center; font-size: 11px; margin-bottom: 20px;">
+                            <i class="fas fa-video" style="font-size: 24px; margin-bottom: 10px; color: var(--text-muted);"></i><br>
+                            "Enable camera & screen access to continue"
+                            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                                <div style="flex:1; background: var(--maya-indigo); color: white; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: bold;">Allow Camera</div>
+                                <div style="flex:1; background: var(--maya-indigo); color: white; padding: 6px; border-radius: 4px; font-size: 9px; font-weight: bold;">Allow Mic</div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: auto; border: 1px solid var(--maya-red); border-radius: 6px; padding: 10px; background: rgba(220, 38, 38, 0.05);">
+                            <div style="color: var(--maya-red); font-weight: bold; font-size: 10px; margin-bottom: 5px;"><i class="fas fa-exclamation-triangle"></i> AI PROCTOR FLAGS:</div>
+                            <ul style="font-size: 9px; margin-left: 15px; color: var(--maya-navy); margin-bottom: 8px; line-height: 1.4;">
+                                <li>Face not detected</li>
+                                <li>Second face in background</li>
+                                <li>Looked away from screen</li>
+                            </ul>
+                            <div style="font-size: 10px; font-weight: bold; color: var(--maya-red); text-align: center; border-top: 1px solid rgba(220, 38, 38, 0.2); padding-top: 5px;">
+                                => Honest students wrongly flagged
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Why it fails -->
+            <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center;">
+                <div class="box" style="border-top-color: var(--maya-navy);">
+                    <div class="box-title" style="border-bottom: none; margin-bottom: 4px; padding-bottom: 0;">SURVEILLANCE PROCTORING</div>
+                    <div style="font-size: 11px; color: var(--text-main); line-height: 1.4;">Biased against neurodivergent / disabled students; privacy backlash; legal bans.</div>
+                </div>
+                <div class="box" style="border-top-color: var(--maya-navy);">
+                    <div class="box-title" style="border-bottom: none; margin-bottom: 4px; padding-bottom: 0;">STATIC PAPERS</div>
+                    <div style="font-size: 11px; color: var(--text-main); line-height: 1.4;">One leak compromises everyone; re-tests are expensive and slow.</div>
+                </div>
+                <div class="box" style="border-top-color: var(--maya-navy);">
+                    <div class="box-title" style="border-bottom: none; margin-bottom: 4px; padding-bottom: 0;">EXAMINER BLIND SPOT</div>
+                    <div style="font-size: 11px; color: var(--text-main); line-height: 1.4;">No data on whether a question is good or broken; bad items hurt fair students.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Strip -->
+        <div style="margin-top: auto; padding: 15px; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-saffron); border-radius: 4px; font-weight: 700; font-size: 13px; color: var(--maya-navy); text-align: center;">
+            The root flaw is design, not enforcement: one paper for everyone. Maya-Exana removes it.
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>2 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_3 = """
+    <!-- SLIDE 3: Gaps vs Maya-Exana Response -->
+    <div class="slide">
+        <h2>From Catching Cheaters to Designing Out Cheating</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px; flex: 1; margin-top: 15px;">
+            <!-- Main Table -->
+            <div style="overflow: hidden; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--maya-border);">
+                <table style="font-size: 12px; line-height: 1.5;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%; font-size: 13px; padding: 12px;">Current Issue</th>
+                            <th style="width: 35%; font-size: 13px; padding: 12px; background-color: #173254;">Why It Fails</th>
+                            <th style="width: 40%; font-size: 13px; padding: 12px; background-color: var(--maya-indigo);">Maya-Exana Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: bold; padding: 12px;">One static paper for all</td>
+                            <td style="padding: 12px; color: var(--maya-red); font-weight: 600;">A single leak compromises the whole exam</td>
+                            <td style="padding: 12px; background-color: rgba(14, 159, 110, 0.05); border-left: 2px solid var(--maya-green); font-weight: bold; color: var(--maya-green);">Unique paper per student from one blueprint</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 12px;">AI proctoring / webcams</td>
+                            <td style="padding: 12px; color: var(--maya-red); font-weight: 600;">Biased, invasive, legally restricted</td>
+                            <td style="padding: 12px; background-color: rgba(14, 159, 110, 0.05); border-left: 2px solid var(--maya-green); font-weight: bold; color: var(--maya-green);">No webcam — integrity by design, not surveillance</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 12px;">Answer keys stored / shipped</td>
+                            <td style="padding: 12px; color: var(--maya-red); font-weight: 600;">Keys can leak and be reused</td>
+                            <td style="padding: 12px; background-color: rgba(14, 159, 110, 0.05); border-left: 2px solid var(--maya-green); font-weight: bold; color: var(--maya-green);">Key is regenerated from the seed on demand; never stored</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 12px;">Manual, slow grading</td>
+                            <td style="padding: 12px; color: var(--maya-red); font-weight: 600;">Expensive; no diagnostic value</td>
+                            <td style="padding: 12px; background-color: rgba(14, 159, 110, 0.05); border-left: 2px solid var(--maya-green); font-weight: bold; color: var(--maya-green);">Instant auto-grade + named misconception per wrong option</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold; padding: 12px;">No question-quality signal</td>
+                            <td style="padding: 12px; color: var(--maya-red); font-weight: 600;">Broken questions silently hurt students</td>
+                            <td style="padding: 12px; background-color: rgba(14, 159, 110, 0.05); border-left: 2px solid var(--maya-green); font-weight: bold; color: var(--maya-green);">Classical Test Theory auto-flags broken / unfair items</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Insight Panel -->
+            <div style="display: flex; gap: 20px; align-items: stretch; margin-top: auto;">
+                <div class="box indigo" style="flex: 1; padding: 20px; background: #0B1F3A; color: white;">
+                    <div style="display: flex; justify-content: space-between; height: 100%; align-items: center;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 11px; font-weight: bold; color: #94A3B8; margin-bottom: 8px;">TRADITIONAL</div>
+                            <div style="font-family: var(--font-code); font-size: 12px; line-height: 1.5; color: #F87171;">
+                                One paper &rarr; one leak &rarr; all compromised
+                            </div>
+                        </div>
+                        <div style="font-size: 24px; color: #475569; padding: 0 20px;"><i class="fas fa-vs"></i> VS</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 11px; font-weight: bold; color: #94A3B8; margin-bottom: 8px;">MAYA-EXANA</div>
+                            <div style="font-family: var(--font-code); font-size: 12px; line-height: 1.5; color: #A3E635;">
+                                (blueprint, studentID) &rarr; deterministic unique paper<br>
+                                &rarr; leaked key fits no one
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom strip -->
+            <div style="padding: 15px; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); border-radius: 4px; font-weight: 700; font-size: 13px; color: var(--maya-navy); text-align: center;">
+                Current tools try to watch the student. Maya-Exana makes the cheat itself worthless.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>3 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_4 = """
+    <!-- SLIDE 4: Proposed Solution -->
+    <div class="slide">
+        <h2>Maya-Exana — A Deterministic, Evidence-First Exam Engine</h2>
+        <div class="subtitle">Generate unique papers, grade them with explanations, measure question quality, and export to real paper — all offline, with zero API calls in the trust-critical path.</div>
+        
+        <div class="grid-3-col">
+            <!-- Left: 6 Capability bars -->
+            <div style="display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Deterministic unique-paper generation (128-bit seeded RNG)
+                </div>
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Blueprint Studio: author once with {variables} + formula
+                </div>
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Explainable auto-grading with named misconceptions
+                </div>
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Examiner psychometrics (Classical Test Theory)
+                </div>
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Privacy-first integrity signals (no webcam, no biometrics)
+                </div>
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); border-left: 4px solid var(--maya-indigo); padding: 12px 15px; font-size: 11px; font-weight: 600; color: var(--maya-navy); border-radius: 4px;">
+                    Bulk export + closed OMR loop (scan &rarr; regenerate &rarr; grade)
+                </div>
+            </div>
+
+            <!-- Center: 4-layer pipeline -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="box indigo" style="padding: 12px;">
+                    <div style="font-size: 10px; font-weight: 800; color: var(--maya-indigo); margin-bottom: 4px;">L1 GENERATION</div>
+                    <div style="font-size: 10px; color: var(--text-main); margin-bottom: 8px;">Blueprint + studentID &rarr; seeded RNG &rarr; unique paper</div>
+                    <div style="background: #F8FAFC; border: 1px dashed var(--maya-border); padding: 6px; font-family: var(--font-code); font-size: 9px; color: var(--maya-green); font-weight: bold;">Output: paper(studentID) — reproducible</div>
+                </div>
+                <div style="text-align: center; color: var(--maya-border);"><i class="fas fa-arrow-down"></i></div>
+                <div class="box indigo" style="padding: 12px;">
+                    <div style="font-size: 10px; font-weight: 800; color: var(--maya-indigo); margin-bottom: 4px;">L2 GRADING</div>
+                    <div style="font-size: 10px; color: var(--text-main); margin-bottom: 8px;">Numeric tolerance + MCQ matching</div>
+                    <div style="background: #F8FAFC; border: 1px dashed var(--maya-border); padding: 6px; font-family: var(--font-code); font-size: 9px; color: var(--maya-green); font-weight: bold;">Output: score + per-item misconception</div>
+                </div>
+                <div style="text-align: center; color: var(--maya-border);"><i class="fas fa-arrow-down"></i></div>
+                <div class="box indigo" style="padding: 12px;">
+                    <div style="font-size: 10px; font-weight: 800; color: var(--maya-indigo); margin-bottom: 4px;">L3 PSYCHOMETRICS</div>
+                    <div style="font-size: 10px; color: var(--text-main); margin-bottom: 8px;">Difficulty index + point-biserial discrimination</div>
+                    <div style="background: #F8FAFC; border: 1px dashed var(--maya-border); padding: 6px; font-family: var(--font-code); font-size: 9px; color: var(--maya-red); font-weight: bold;">Output: item_analysis (broken items flagged)</div>
+                </div>
+                <div style="text-align: center; color: var(--maya-border);"><i class="fas fa-arrow-down"></i></div>
+                <div class="box indigo" style="padding: 12px;">
+                    <div style="font-size: 10px; font-weight: 800; color: var(--maya-indigo); margin-bottom: 4px;">L4 DELIVERY</div>
+                    <div style="font-size: 10px; color: var(--text-main); margin-bottom: 8px;">Bulk print pack + master key + OMR grading</div>
+                    <div style="background: #F8FAFC; border: 1px dashed var(--maya-border); padding: 6px; font-family: var(--font-code); font-size: 9px; color: var(--maya-green); font-weight: bold;">Output: exam_pack.html / PDF + gradeFromOMR()</div>
+                </div>
+            </div>
+
+            <!-- Right: Two Big Mockups -->
+            <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center;">
+                
+                <!-- Mockup A -->
+                <div class="box" style="border: 1px solid var(--maya-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 0; overflow: hidden; border-top: none;">
+                    <div style="background: var(--maya-navy); color: white; padding: 10px 15px; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">MAYA-EXANA — Paper for NEET-100482</div>
+                    <div style="padding: 15px;">
+                        <div style="font-size: 11px; font-weight: bold; color: var(--maya-indigo); margin-bottom: 6px;">Q3 (Physics, 2 marks)</div>
+                        <div style="font-size: 12px; line-height: 1.4; margin-bottom: 12px;">An object starts at 6 m/s and accelerates at 4 m/s² for 5 s. Find final velocity (m/s).</div>
+                        <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; padding: 10px; background: var(--maya-light); border-radius: 4px; border: 1px solid var(--maya-border);">
+                            <div>( A ) 20</div>
+                            <div>( B ) 26</div>
+                            <div>( C ) 24</div>
+                            <div>( D ) 30</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mockup B -->
+                <div class="box" style="border: 1px solid var(--maya-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 0; overflow: hidden; border-top: none;">
+                    <div style="background: var(--maya-green); color: white; padding: 10px 15px; font-size: 10px; font-weight: bold; letter-spacing: 0.5px; display: flex; justify-content: space-between;">
+                        <span>Score: 5 / 6 (83%)</span>
+                        <span><i class="fas fa-check-circle"></i> Passed</span>
+                    </div>
+                    <div style="padding: 15px;">
+                        <div style="font-size: 11px; font-weight: bold; color: var(--maya-red); margin-bottom: 6px;"><i class="fas fa-times-circle"></i> Q3 incorrect — likely slip: "forgot initial velocity u"</div>
+                        <div style="font-size: 11px; line-height: 1.5; margin-bottom: 15px; background: rgba(14, 159, 110, 0.1); padding: 8px; border-radius: 4px; border-left: 3px solid var(--maya-green);">
+                            <strong>Correct solution:</strong><br>
+                            v = u + at = 6 + 4×5 = 26 m/s
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex:1; text-align:center; padding: 6px; border: 1px solid var(--maya-border); border-radius: 4px; font-size: 9px; font-weight: bold; background: white;"><i class="fas fa-file-pdf"></i> PDF Export</div>
+                            <div style="flex:1; text-align:center; padding: 6px; border: 1px solid var(--maya-border); border-radius: 4px; font-size: 9px; font-weight: bold; background: white;"><i class="fas fa-file-csv"></i> Results CSV</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>4 / 13</div>
+        </div>
+    </div>
+"""
+
+
+slide_5 = """
+    <!-- SLIDE 5: System Architecture -->
+    <div class="slide">
+        <h2>System Architecture: From Blueprint to Verified Result</h2>
+        
+        <div class="grid-left-wide" style="margin-top: 15px;">
+            <!-- Left: Architecture Flowchart -->
+            <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+                <!-- Path -->
+                <div style="position: absolute; width: 2px; background: var(--maya-indigo); top: 0; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0;"></div>
+                
+                <div style="background: white; border: 2px solid var(--maya-navy); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1; margin-bottom: 20px;">[ Blueprint + Student ID ]</div>
+                <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1; margin-bottom: 20px;">Seeded RNG: xmur3 &rarr; 128-bit sfc32</div>
+                <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1; margin-bottom: 20px;">Materialize unique paper (items, options, key)</div>
+                
+                <div style="display: flex; gap: 40px; margin-bottom: 20px; z-index: 1; width: 100%; justify-content: center;">
+                    <!-- Left Branch (NO - OMR) -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: white; border: 2px solid var(--maya-saffron); padding: 10px; transform: rotate(45deg); margin-bottom: 15px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"><div style="transform: rotate(-45deg); font-weight: bold; font-size: 10px; text-align: center;">Student<br>submits?</div></div>
+                        <div style="background: white; color: var(--maya-saffron); font-weight: bold; font-size: 10px; margin-bottom: 10px;">NO (Paper)</div>
+                        <div style="background: white; border: 2px dashed var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 10px; text-align: center;">Printable<br>OMR path</div>
+                        <div style="background: white; border: 2px solid var(--maya-saffron); padding: 10px; transform: rotate(45deg); margin-bottom: 15px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"><div style="transform: rotate(-45deg); font-weight: bold; font-size: 9px; text-align: center;">Scanned<br>sheet?</div></div>
+                        <div style="background: white; color: var(--maya-green); font-weight: bold; font-size: 10px; margin-bottom: 10px;">YES</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 10px; text-align: center;">Regenerate paper<br>from seed</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; text-align: center;">Grade letters</div>
+                    </div>
+                    
+                    <!-- Right Branch (YES - Online) -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div style="background: white; color: var(--maya-green); font-weight: bold; font-size: 10px; margin-bottom: 10px; margin-top: 25px;">YES (Online)</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 20px; text-align: center;">Auto-grade:<br>tolerance + MCQ</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 20px; text-align: center;">Per-item misconception feedback</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 20px; text-align: center;">Cohort collected</div>
+                        <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px; font-weight: bold; font-size: 10px; margin-bottom: 20px; text-align: center;">CTT item analysis</div>
+                        <div style="background: white; border: 2px solid var(--maya-saffron); padding: 10px; transform: rotate(45deg); margin-bottom: 15px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"><div style="transform: rotate(-45deg); font-weight: bold; font-size: 9px; text-align: center;">Item<br>discrim?</div></div>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="text-align: center;">
+                                <div style="background: white; color: var(--maya-green); font-weight: bold; font-size: 10px; margin-bottom: 5px;">YES</div>
+                                <div style="background: white; border: 2px solid var(--maya-green); border-radius: 6px; padding: 8px; font-weight: bold; font-size: 9px;">Keep item</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="background: white; color: var(--maya-red); font-weight: bold; font-size: 10px; margin-bottom: 5px;">NO</div>
+                                <div style="background: white; border: 2px solid var(--maya-red); border-radius: 6px; padding: 8px; font-weight: bold; font-size: 9px; color: var(--maya-red);">FLAG broken</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--maya-green); color: white; border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Exports: PDF pack | master key | results | analysis</div>
+            </div>
+
+            <!-- Right: Artifacts & Trust Chips -->
+            <div style="display: flex; flex-direction: column; gap: 20px; justify-content: flex-start; padding-top: 40px;">
+                <div class="box indigo">
+                    <div class="box-title">Artifacts Generated</div>
+                    <ul style="font-family: var(--font-code); font-size: 12px; color: var(--text-main); line-height: 2; list-style-type: none; margin-left:0;">
+                        <li><i class="far fa-file-code" style="color:var(--text-muted); width: 20px;"></i> paper(studentID)</li>
+                        <li><i class="fas fa-key" style="color:var(--maya-saffron); width: 20px;"></i> answer_key (from seed)</li>
+                        <li><i class="fas fa-table" style="color:var(--text-muted); width: 20px;"></i> results.csv</li>
+                        <li><i class="fas fa-chart-line" style="color:var(--text-muted); width: 20px;"></i> item_analysis.json</li>
+                        <li><i class="fas fa-file-pdf" style="color:var(--maya-red); width: 20px;"></i> exam_pack.html / .pdf</li>
+                        <li><i class="fas fa-key" style="color:var(--maya-navy); width: 20px;"></i> master_key</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: auto; background: var(--maya-light); padding: 15px; border-radius: 8px; border: 1px solid var(--maya-border);">
+                    <div style="font-weight: 800; color: var(--maya-navy); font-size: 11px; margin-bottom: 10px; text-transform: uppercase;">System Trust Properties</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        <span class="badge">Deterministic</span>
+                        <span class="badge">Offline-capable</span>
+                        <span class="badge">Zero API calls</span>
+                        <span class="badge">No key stored</span>
+                        <span class="badge">Reproducible</span>
+                        <span class="badge">Auditable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>5 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_6 = """
+    <!-- SLIDE 6: The Core -->
+    <div class="slide">
+        <h2>The Seed Is the Exam — Unique, Yet Reproducible</h2>
+        <div class="subtitle">A student ID is hashed (xmur3) into a 128-bit state that seeds an sfc32 PRNG. Same ID always rebuilds the same paper (auditable); different IDs get different papers (uncheatable).</div>
+        
+        <div style="display: flex; gap: 30px; justify-content: center; margin-top: 10px;">
+            <!-- Student A Card -->
+            <div class="box" style="flex: 1; border-top-width: 4px; border-top-color: var(--maya-indigo);">
+                <div style="font-size: 12px; font-weight: 800; color: var(--maya-navy); margin-bottom: 15px; border-bottom: 1px solid var(--maya-border); padding-bottom: 8px;">
+                    STUDENT A <span style="font-weight: normal; color: var(--text-muted); float: right;">seed: NEET-100482</span>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q1. 462 km in 8 h &rarr; speed?</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: B</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q2. CI on 7000 @ 12%, 3 yr</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: D</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q3. v = u + at (6, 4, 5)</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: A</div>
+                </div>
+            </div>
+
+            <!-- VS Badge -->
+            <div style="display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--text-muted); font-weight: 800;">
+                VS
+            </div>
+
+            <!-- Student B Card -->
+            <div class="box" style="flex: 1; border-top-width: 4px; border-top-color: var(--maya-indigo);">
+                <div style="font-size: 12px; font-weight: 800; color: var(--maya-navy); margin-bottom: 15px; border-bottom: 1px solid var(--maya-border); padding-bottom: 8px;">
+                    STUDENT B <span style="font-weight: normal; color: var(--text-muted); float: right;">seed: NEET-100483</span>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q1. 251 km in 3 h &rarr; speed?</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: C</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q2. CI on 17000 @ 12%, 3 yr</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: B</div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="font-weight: bold; font-size: 13px; margin-bottom: 4px;">Q3. v = u + at (3, 6, 6)</div>
+                    <div style="font-size: 12px; color: var(--maya-green); font-weight: bold; background: rgba(14, 159, 110, 0.1); padding: 4px 8px; border-radius: 4px; display: inline-block;">key: B</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+            <div style="display: inline-block; padding: 12px 25px; background: rgba(220, 38, 38, 0.1); border-left: 4px solid var(--maya-red); color: var(--maya-red); font-weight: 800; font-size: 16px; border-radius: 4px;">
+                A's leaked answer key (B, D, A ...) scores ~random on B's paper. Sharing is pointless.
+            </div>
+        </div>
+
+        <div class="box indigo" style="background: #F8FAFC; margin-top: auto;">
+            <div class="box-title">Why this matters</div>
+            <ul style="font-size: 12px; line-height: 1.6; color: var(--text-main); margin-left: 20px;">
+                <li><strong>128-bit seed space</strong> &rarr; no practical collisions even at national scale.</li>
+                <li><strong>No question text stored on a server</strong> &rarr; nothing to leak.</li>
+                <li><strong>Re-buildable</strong> &rarr; Any paper is deterministically re-buildable from its ID for audit, appeal, or re-grade.</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>6 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_7 = """
+    <!-- SLIDE 7: Blueprint Studio -->
+    <div class="slide">
+        <h2>Blueprint Studio — Teachers Author Once, Generate Infinitely</h2>
+        <div class="subtitle">Write a question with {variables} and a plain answer formula. Maya-Exana produces unlimited reproducible variants. Formulas run through a custom shunting-yard parser — never eval().</div>
+        
+        <div class="grid-3-col" style="margin-top: 10px;">
+            <!-- Left: Authoring Panel Mockup -->
+            <div class="box indigo" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="background: var(--maya-navy); color: white; padding: 10px 15px; font-size: 11px; font-weight: bold;">Teacher View: Author Item</div>
+                <div style="padding: 15px; flex: 1; display: flex; flex-direction: column; gap: 12px;">
+                    <div>
+                        <div style="font-size: 10px; font-weight: bold; color: var(--text-muted); margin-bottom: 4px;">Prompt:</div>
+                        <div style="border: 1px solid var(--maya-border); padding: 8px; border-radius: 4px; font-size: 11px;">
+                            A <span style="color:var(--maya-saffron); font-weight:bold;">{object}</span> travels at <span style="color:var(--maya-saffron); font-weight:bold;">{speed}</span> km/h for <span style="color:var(--maya-saffron); font-weight:bold;">{time}</span> h. Distance (km)?
+                        </div>
+                        <div style="display: flex; gap: 5px; margin-top: 6px;">
+                            <span style="background: var(--maya-light); padding: 3px 8px; border: 1px dashed var(--maya-saffron); border-radius: 10px; font-size: 9px; cursor: pointer;">+ object</span>
+                            <span style="background: var(--maya-light); padding: 3px 8px; border: 1px dashed var(--maya-saffron); border-radius: 10px; font-size: 9px; cursor: pointer;">+ speed</span>
+                            <span style="background: var(--maya-light); padding: 3px 8px; border: 1px dashed var(--maya-saffron); border-radius: 10px; font-size: 9px; cursor: pointer;">+ time</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--maya-light); padding: 10px; border-radius: 4px; font-size: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; border-bottom: 1px solid var(--maya-border); padding-bottom: 4px;">
+                            <span style="font-weight:bold; color:var(--maya-navy); width:40px;">speed:</span>
+                            <span>min <input type="text" value="20" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                            <span>max <input type="text" value="100" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                            <span>step <input type="text" value="10" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 6px; border-bottom: 1px solid var(--maya-border); padding-bottom: 4px;">
+                            <span style="font-weight:bold; color:var(--maya-navy); width:40px;">time:</span>
+                            <span>min <input type="text" value="1" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                            <span>max <input type="text" value="6" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                            <span>step <input type="text" value="1" style="width:25px; padding:2px; font-size:9px; border:1px solid #ccc;"></span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 4px;">
+                            <span style="font-weight:bold; color:var(--maya-navy); width:40px;">object:</span>
+                            <span style="color:var(--text-muted);">car, train, cyclist, bus</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 10px; font-weight: bold; color: var(--text-muted); margin-bottom: 2px;">Formula:</div>
+                            <div style="font-family: var(--font-code); background: #0B1F3A; color: #A3E635; padding: 6px; border-radius: 4px; font-size: 10px;">speed * time</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 10px; font-weight: bold; color: var(--text-muted); margin-bottom: 2px;">Unit:</div>
+                            <div style="background: white; border: 1px solid var(--maya-border); padding: 6px; border-radius: 4px; font-size: 10px;">km</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <button style="flex:1; padding: 8px; background: white; border: 1px solid var(--maya-indigo); color: var(--maya-indigo); border-radius: 4px; font-weight: bold; font-size: 9px; cursor: pointer;">Generate variants</button>
+                        <button style="flex:1; padding: 8px; background: var(--maya-indigo); border: none; color: white; border-radius: 4px; font-weight: bold; font-size: 9px; cursor: pointer;">Save blueprint</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center: Live Variants -->
+            <div class="box indigo" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="background: var(--maya-light); border-bottom: 1px solid var(--maya-border); padding: 10px 15px; font-size: 11px; font-weight: bold; color: var(--maya-navy);">Live Variants (Auto-generated)</div>
+                <div style="padding: 15px; font-family: var(--font-code); font-size: 10px; line-height: 2.2; color: var(--text-main);">
+                    1. A <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">train</span> at <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">60</span> km/h for <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">4</span> h  &rarr; <span style="color: var(--maya-green); font-weight: bold;">240</span> km<br>
+                    2. A <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">bus</span> at <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">30</span> km/h for <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">4</span> h  &rarr; <span style="color: var(--maya-green); font-weight: bold;">120</span> km<br>
+                    3. A <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">car</span> at <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">70</span> km/h for <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">3</span> h  &rarr; <span style="color: var(--maya-green); font-weight: bold;">210</span> km<br>
+                    4. A <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">cyclist</span> at <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">30</span> km/h for <span style="background: #E0E7FF; padding: 2px 4px; border-radius: 3px;">2</span> h &rarr;  <span style="color: var(--maya-green); font-weight: bold;">60</span> km<br>
+                </div>
+            </div>
+
+            <!-- Right: SVG Visual Proof -->
+            <div class="box indigo" style="display: flex; flex-direction: column;">
+                <div class="box-title">Visual Math Support</div>
+                <div style="font-size: 11px; margin-bottom: 15px; line-height: 1.5;">Geometry (visual) — each student gets a different figure dynamically rendered via inline SVG:</div>
+                
+                <div style="background: var(--maya-light); border: 1px solid var(--maya-border); padding: 15px; border-radius: 6px; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <svg width="120" height="90" viewBox="0 0 120 90" style="margin-bottom: 10px;">
+                        <polygon points="10,80 110,80 10,10" fill="rgba(37, 65, 178, 0.1)" stroke="var(--maya-indigo)" stroke-width="2"/>
+                        <text x="60" y="88" font-size="10" text-anchor="middle" font-family="var(--font-code)">base = 8</text>
+                        <text x="25" y="45" font-size="10" text-anchor="end" font-family="var(--font-code)">height = 5</text>
+                        <polyline points="10,70 20,70 20,80" fill="none" stroke="var(--maya-indigo)" stroke-width="1"/>
+                    </svg>
+                    <div style="font-weight: bold; font-size: 11px;">Find the area.</div>
+                    <div style="margin-top: 8px; font-family: var(--font-code); font-size: 10px; color: var(--maya-green);">1/2 * 8 * 5 = 20 sq units</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: auto; font-size: 12px; color: var(--text-muted); text-align: center; font-style: italic; background: var(--maya-light); padding: 10px; border-radius: 4px;">
+            9 templates across 7 subjects: Quant, Logical Reasoning, Physics, Chemistry, English/Vocabulary, Geometry (visual), Computer Science.
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>7 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_8 = """
+    <!-- SLIDE 8: Grading + Misconceptions + Psychometrics -->
+    <div class="slide">
+        <h2>Instant Grading That Teaches — and Tells Examiners Which Questions Are Broken</h2>
+        
+        <div class="grid-left-wide" style="margin-top: 20px; gap: 40px;">
+            <!-- Left: Grading Card -->
+            <div style="display: flex; flex-direction: column;">
+                <div class="box" style="border: 1px solid var(--maya-border); border-top: 4px solid var(--maya-red); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="font-size: 14px; font-weight: 800; color: var(--maya-red); margin-bottom: 12px;"><i class="fas fa-times-circle"></i> Q3 incorrect</div>
+                    
+                    <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 15px; background: var(--maya-light); padding: 10px; border-radius: 4px;">
+                        <div>Your answer: <span style="font-weight: bold; color: var(--maya-red);">A (20)</span></div>
+                        <div>Correct: <span style="font-weight: bold; color: var(--maya-green);">B (26)</span></div>
+                    </div>
+                    
+                    <div style="font-size: 12px; margin-bottom: 15px;">
+                        <span style="font-weight: bold; color: var(--maya-saffron);">Likely slip:</span> "forgot initial velocity u"
+                    </div>
+                    
+                    <div style="font-size: 11px; line-height: 1.5; background: rgba(14, 159, 110, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--maya-green);">
+                        <strong>Worked solution:</strong><br>
+                        v = u + at = 6 + 4×5 = 26 m/s
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; font-size: 12px; line-height: 1.5; color: var(--text-main); background: #F8FAFC; padding: 12px; border-radius: 6px; border: 1px dashed var(--maya-indigo);">
+                    <i class="fas fa-info-circle" style="color: var(--maya-indigo);"></i> <strong>Every wrong option maps to a NAMED misconception</strong> — diagnostic feedback, not just a red X.
+                </div>
+            </div>
+
+            <!-- Right: CTT Item Analysis Table -->
+            <div style="display: flex; flex-direction: column;">
+                <div class="box-title" style="font-size: 14px;">Classical Test Theory (CTT) Item Analysis</div>
+                <div style="overflow: hidden; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--maya-border);">
+                    <table style="font-size: 12px; line-height: 1.6;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px;">Item</th>
+                                <th style="padding: 10px;">Subject</th>
+                                <th style="padding: 10px;">Difficulty (p)</th>
+                                <th style="padding: 10px;">Discrimination (r_pb)</th>
+                                <th style="padding: 10px;">Flag</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold;">Q1</td><td>Quant</td><td>0.84</td><td>0.55</td><td><span class="badge green" style="margin:0;">ok</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Q2</td><td>Quant</td><td>0.69</td><td>0.55</td><td><span class="badge green" style="margin:0;">ok</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Q3</td><td>Physics</td><td>0.59</td><td>0.68</td><td><span class="badge green" style="margin:0;">ok</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Q4</td><td>Quant</td><td>0.62</td><td>0.64</td><td><span class="badge green" style="margin:0;">ok</span></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Q5</td><td>English</td><td>0.72</td><td>0.58</td><td><span class="badge green" style="margin:0;">ok</span></td>
+                            </tr>
+                            <tr style="background-color: rgba(220, 38, 38, 0.1);">
+                                <td style="font-weight: bold; color: var(--maya-red);">Q6</td>
+                                <td style="color: var(--maya-red); font-weight: 500;">CS</td>
+                                <td style="color: var(--maya-red); font-weight: 500;">0.50</td>
+                                <td style="font-weight: bold; color: var(--maya-red);">-0.26</td>
+                                <td><span class="badge" style="background-color: var(--maya-red); margin:0;">BROKEN</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 15px; font-size: 11px; line-height: 1.6; color: var(--text-muted);">
+                    <strong>Difficulty index</strong> = fraction correct.<br>
+                    <strong>Discrimination</strong> = does the item separate strong from weak students? Negative means it is broken (strong students miss it, weak students guess it). Maya-Exana flags it automatically — built from scratch, no ML library.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer" style="margin-bottom: 40px !important;">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>8 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_9 = """
+    <!-- SLIDE 9: Privacy-First Integrity -->
+    <div class="slide">
+        <h2>Integrity Without Surveillance</h2>
+        <div class="subtitle">No webcam. No biometrics. Consented behavioural signals, each with a plain-English reason — and a human examiner always makes the final call.</div>
+        
+        <div class="grid-left-wide" style="margin-top: 20px;">
+            <!-- Left: Signal Flow -->
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px; width: 100%;">
+                    <!-- Signals -->
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div style="background: white; border: 1px solid var(--maya-border); padding: 8px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; text-align: center;">[ timing ]</div>
+                        <div style="background: white; border: 1px solid var(--maya-border); padding: 8px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; text-align: center;">[ paste events ]</div>
+                        <div style="background: white; border: 1px solid var(--maya-border); padding: 8px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; text-align: center;">[ focus loss ]</div>
+                    </div>
+                    
+                    <div style="font-size: 24px; color: var(--maya-border);">&rarr;</div>
+                    
+                    <!-- Engine -->
+                    <div style="background: var(--maya-indigo); color: white; padding: 15px; border-radius: 8px; font-size: 12px; font-weight: bold; text-align: center; flex: 1;">
+                        [ explainable risk band ]<br>
+                        <span style="font-size: 9px; font-weight: normal;">(clear / review / high, with reasons)</span>
+                    </div>
+                    
+                    <div style="font-size: 24px; color: var(--maya-border);">&rarr;</div>
+                    
+                    <!-- Human -->
+                    <div style="background: var(--maya-green); color: white; padding: 15px; border-radius: 8px; font-size: 12px; font-weight: bold; text-align: center; flex: 1;">
+                        [ human examiner decides ]
+                    </div>
+                </div>
+
+                <!-- Example Readout Card -->
+                <div class="box" style="width: 80%; border-top-color: var(--maya-saffron); margin-top: 15px;">
+                    <div style="font-size: 13px; font-weight: bold; color: var(--maya-navy); margin-bottom: 10px;">
+                        Risk: <span style="font-size: 16px;">78 / 100</span> &nbsp;&nbsp;<span style="color: var(--maya-red);">HIGH</span>
+                    </div>
+                    <ul style="font-size: 11px; line-height: 1.6; color: var(--text-main); margin-left: 15px;">
+                        <li>completed implausibly fast</li>
+                        <li>3 paste events on Q4</li>
+                        <li>2 tab switches</li>
+                    </ul>
+                    
+
+                </div>
+            </div>
+
+            <!-- Right: Honesty Panel -->
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="box" style="background: #FFFDF8; border-color: #E5E7EB; border-left: 4px solid var(--maya-saffron);">
+                    <div class="box-title" style="color: var(--maya-saffron);">SCOPE (stated honestly):</div>
+                    <ul style="font-size: 12px; line-height: 1.6; color: var(--text-main); margin-left: 15px; margin-bottom: 15px;">
+                        <li>Client-side signals are a conceptual proxy and <strong>ARE spoofable</strong>.</li>
+                        <li>Production: sandboxed Web Worker + cryptographically signed payloads.</li>
+                        <li><strong>Even if telemetry is fully defeated, the core guarantee holds:</strong><br>
+                        unique papers make a leaked key worthless regardless of monitoring.</li>
+                    </ul>
+                    <div style="font-weight: bold; font-size: 11px; text-align: center; color: var(--maya-navy); padding-top: 10px; border-top: 1px solid #E5E7EB;">
+                        Integrity signals are defense-in-depth, not the primary control.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom strip -->
+        <div style="margin-top: auto; padding: 15px; background: var(--maya-navy); border-radius: 4px; font-weight: 700; font-size: 13px; color: white; text-align: center;">
+            Maya-Exana never accuses. It surfaces explainable evidence for a human — legally defensible by design.
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>9 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_10 = """
+    <!-- SLIDE 10: Closing the Loop -->
+    <div class="slide">
+        <h2>Built for India's Reality — Offline Paper Exams, Closed Loop</h2>
+        
+        <div class="grid-2-col" style="margin-top: 30px;">
+            <!-- Left: Printed Pack Mockup -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="box" style="width: 80%; background: #ffffff; border: 1px solid var(--maya-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative;">
+                    <!-- Stack effect -->
+                    <div style="position: absolute; top: 4px; left: 4px; right: -4px; bottom: -4px; background: white; border: 1px solid var(--maya-border); z-index: -1;"></div>
+                    <div style="position: absolute; top: 8px; left: 8px; right: -8px; bottom: -8px; background: white; border: 1px solid var(--maya-border); z-index: -2;"></div>
+                    
+                    <div style="text-align: center; border-bottom: 2px solid var(--maya-navy); padding-bottom: 10px; margin-bottom: 15px;">
+                        <h3 style="margin: 0; color: var(--maya-navy);">MAYA-EXANA EXAM PACK</h3>
+                    </div>
+                    
+                    <div style="font-family: var(--font-code); font-size: 11px; line-height: 2; color: var(--text-main);">
+                        Paper for NEET-100482 ........ <span style="color: var(--maya-indigo); font-weight: bold;">unique</span><br>
+                        Paper for NEET-100483 ........ <span style="color: var(--maya-indigo); font-weight: bold;">unique</span><br>
+                        <div style="text-align: center; color: var(--text-muted); margin: 10px 0;">...  (50 papers)  ...</div>
+                        <div style="margin-top: 20px; font-weight: bold; color: var(--maya-red); border-top: 1px dashed var(--maya-border); padding-top: 10px;">MASTER GRADING KEY (1 page)</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; width: 85%; font-family: var(--font-code); font-size: 11px; background: var(--maya-navy); color: #A3E635; padding: 12px; border-radius: 6px;">
+                    > node export.js 50<br>
+                    -> 50 unique printable papers + master key, streamed to disk<br>
+                    <span style="color: var(--text-muted);">(no out-of-memory even at institutional scale).</span>
+                </div>
+            </div>
+
+            <!-- Right: OMR Loop -->
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; position: relative;">
+                    <!-- Vertical Line -->
+                    <div style="position: absolute; width: 2px; background: var(--maya-indigo); top: 10px; bottom: 10px; z-index: 0;"></div>
+                    
+                    <div style="background: white; border: 2px solid var(--maya-navy); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Print unique papers</div>
+                    
+                    <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Students sit exam</div>
+                    
+                    <div style="background: white; border: 2px solid var(--maya-indigo); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Scan OMR &rarr; bubbled letters: A C B ...</div>
+                    
+                    <div style="background: var(--maya-light); border: 2px dashed var(--maya-indigo); border-radius: 6px; padding: 10px 20px; font-family: var(--font-code); font-weight: bold; font-size: 11px; z-index: 1; color: var(--maya-indigo);">gradeFromOMR(blueprint, ID, letters)</div>
+                    
+                    <div style="background: white; border: 2px solid var(--maya-saffron); border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Regenerate that exact paper from its seed</div>
+                    
+                    <div style="background: var(--maya-green); color: white; border-radius: 6px; padding: 10px 20px; font-weight: bold; font-size: 11px; z-index: 1;">Grade instantly — no stored answer key</div>
+                </div>
+                
+                <div class="box" style="margin-top: 25px; background: #FFFDF8; border-color: #E5E7EB; border-left: 4px solid var(--maya-saffron); font-size: 10px; line-height: 1.5;">
+                    Image &rarr; letters is a standard, solved OMR step (out of scope). Maya-Exana's contribution is <strong>grading-by-regeneration</strong>: no answer key is ever stored or shipped.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>10 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_11 = """
+    <!-- SLIDE 11: Tech Stack -->
+    <div class="slide">
+        <h2>Engineering Quality: Zero Dependencies, Verifiable Math</h2>
+        
+        <div class="grid-2-col" style="margin-top: 20px;">
+            <!-- Left: Layered Stack -->
+            <div style="display: flex; flex-direction: column; justify-content: center; gap: 8px;">
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-navy); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">PRESENTATION</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0;">index.html demo &middot; slides deck (live engine embedded)</div>
+                </div>
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-indigo); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">DELIVERY</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0;">export.js (streamed) &middot; OMR grading</div>
+                </div>
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-indigo); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">INTELLIGENCE</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0;">CTT psychometrics &middot; misconception mapping</div>
+                </div>
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-indigo); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">CORE ENGINE</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0;">128-bit seeded RNG &middot; template system &middot; grader</div>
+                </div>
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-indigo); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">SAFE EVAL</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0;">custom shunting-yard parser (no eval)</div>
+                </div>
+                <div style="display: flex; align-items: stretch;">
+                    <div style="width: 120px; background: var(--maya-green); color: white; font-weight: 800; font-size: 10px; padding: 12px; display: flex; align-items: center; border-radius: 4px 0 0 4px;">QUALITY</div>
+                    <div style="flex: 1; background: var(--maya-light); border: 1px solid var(--maya-border); border-left: none; padding: 12px; font-size: 11px; border-radius: 0 4px 4px 0; font-weight: bold; color: var(--maya-green);">65 tests &middot; CI &middot; Node + browser parity</div>
+                </div>
+            </div>
+
+            <!-- Right: Tech Grid -->
+            <div style="display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">JavaScript (ES, zero deps)</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">Node.js</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">HTML5 / CSS3 (offline)</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">GitHub Actions CI</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">xmur3 + sfc32 PRNG</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">Shunting-yard AST</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">Classical Test Theory</div>
+                    <div style="background: white; border: 1px solid var(--maya-indigo); padding: 15px; border-radius: 6px; text-align: center; font-weight: bold; font-size: 12px; color: var(--maya-navy); box-shadow: 0 2px 4px rgba(0,0,0,0.05);">Print-to-PDF export</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Banner -->
+        <div style="margin-top: auto; background: var(--maya-saffron); color: white; padding: 15px; border-radius: 6px; box-shadow: 0 4px 6px rgba(232, 116, 12, 0.2);">
+            <div style="font-weight: 900; font-size: 14px; margin-bottom: 5px; text-transform: uppercase;">NOT AN AI WRAPPER</div>
+            <div style="font-size: 12px; line-height: 1.5;">The trust-critical path (generate, grade, analyze) makes ZERO API calls. It is deterministic, verifiable math you can audit offline in ten minutes. AI is optional authoring help only; it never decides a grade. <span style="opacity: 0.8;">(See DESIGN.md, ADR-001.)</span></div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>11 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_12 = """
+    <!-- SLIDE 12: Comparison & Feasibility -->
+    <div class="slide">
+        <h2>Why Maya-Exana Is Different — and Honestly Scoped</h2>
+        
+        <!-- Top: Comparison Matrix -->
+        <div style="overflow: hidden; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--maya-border); margin-top: 15px;">
+            <table style="font-size: 12px; line-height: 1.6; width: 100%;">
+                <thead style="background: var(--maya-navy); color: white;">
+                    <tr>
+                        <th style="padding: 12px; text-align: left; width: 34%;">Capability</th>
+                        <th style="padding: 12px; text-align: center; width: 22%;">Proctorio<br><span style="font-size: 9px; font-weight: normal; opacity: 0.8;">(surveillance)</span></th>
+                        <th style="padding: 12px; text-align: center; width: 22%;">Canvas / LMS<br><span style="font-size: 9px; font-weight: normal; opacity: 0.8;">(random bank)</span></th>
+                        <th style="padding: 12px; text-align: center; width: 22%;">Maya-Exana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">Stops a leaked answer key</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No</td>
+                        <td style="text-align: center; color: var(--maya-saffron); font-weight: bold;">Partial</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes — structurally</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">No webcam / biometrics</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold;">Yes</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">Reproducible audit trail</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold;">No (stored in DB)</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes — seed = exam</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">Works fully offline</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold;">No</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">Question-health analytics</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No</td>
+                        <td style="text-align: center; color: var(--text-muted); font-weight: bold;">Basic</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes — CTT flags broken items</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 10px;">Legally / ethically safe</td>
+                        <td style="text-align: center; color: var(--maya-red); font-weight: bold; background: rgba(220,38,38,0.05);">No (bias, bans)</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold;">Yes</td>
+                        <td style="text-align: center; color: var(--maya-green); font-weight: bold; background: rgba(14,159,110,0.1);">Yes — by design</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Middle: Precedent Line -->
+        <div style="margin-top: 15px; padding: 12px; background: #F8FAFC; border-left: 4px solid var(--maya-indigo); font-size: 11px; line-height: 1.5; color: var(--text-main);">
+            Parameterised generation itself is not new (Khan, WeBWorK, MyOpenMath). The contribution is the <strong>COMBINATION</strong>: determinism <em>AS</em> the anti-cheat primitive, closing the loop to paper via seed-regeneration, and CTT auto-flagging of broken items.
+        </div>
+
+        <!-- Bottom: Feasibility Table -->
+        <div style="margin-top: auto;">
+            <div style="font-weight: bold; font-size: 12px; color: var(--maya-navy); margin-bottom: 8px;">Feasibility & Risks</div>
+            <div style="overflow: hidden; border-radius: 6px; border: 1px solid var(--maya-border);">
+                <table style="font-size: 11px; line-height: 1.5; width: 100%;">
+                    <thead>
+                        <tr style="background: var(--maya-light);">
+                            <th style="padding: 8px; text-align: left; width: 30%;">Risk</th>
+                            <th style="padding: 8px; text-align: left;">Mitigation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600; padding: 8px;">Client telemetry spoofable</td>
+                            <td style="padding: 8px;">Core guarantee independent of telemetry; production = Web Worker + signed payloads</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; padding: 8px;">Teacher writes a bad formula</td>
+                            <td style="padding: 8px;">Safe parser rejects it with a clear error; no crash, no <code>eval()</code></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; padding: 8px;">Scale (lakhs of papers)</td>
+                            <td style="padding: 8px;">Stateless pure function + streamed export; horizontal scaling, no DB read to generate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>12 / 13</div>
+        </div>
+    </div>
+"""
+
+slide_13 = """
+    <!-- SLIDE 13: Demo & Roadmap -->
+    <div class="slide">
+        <h2>Demo Flow, Real-World Impact & Roadmap</h2>
+        
+        <div class="grid-2-col" style="margin-top: 20px; gap: 40px;">
+            <!-- Left: Demo Workflow -->
+            <div class="box indigo">
+                <div class="box-title">Live Demo Workflow</div>
+                <ol style="font-family: var(--font-code); font-size: 11px; color: var(--text-main); line-height: 2; margin-left: 20px;">
+                    <li>Enter a Student ID &rarr; generate a unique paper</li>
+                    <li>Change the ID &rarr; a different paper <span style="color:var(--text-muted);">(sharing is pointless)</span></li>
+                    <li>Submit &rarr; instant grade + misconception</li>
+                    <li>Open analytics &rarr; Q6 flagged as broken (CTT)</li>
+                    <li>Author in Blueprint Studio &rarr; live variants</li>
+                    <li><code>node export.js 50</code> &rarr; 50 papers + master key</li>
+                    <li><code>node tests/engine.test.js</code> &rarr; 65/65 green</li>
+                </ol>
+            </div>
+
+            <!-- Right: Impact & Roadmap -->
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Use Cases -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                    <div style="background: var(--maya-light); padding: 12px; border-radius: 6px; border: 1px solid var(--maya-border);">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--maya-navy); margin-bottom: 5px;">SCHOOLS & COACHING</div>
+                        <div style="font-size: 10px; line-height: 1.4;">Per-student unit tests, instant grading.</div>
+                    </div>
+                    <div style="background: var(--maya-light); padding: 12px; border-radius: 6px; border: 1px solid var(--maya-border);">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--maya-navy); margin-bottom: 5px;">COMPETITIVE EXAMS</div>
+                        <div style="font-size: 10px; line-height: 1.4;">Leak-resistant national papers via unique seeds.</div>
+                    </div>
+                    <div style="background: var(--maya-light); padding: 12px; border-radius: 6px; border: 1px solid var(--maya-border);">
+                        <div style="font-weight: 800; font-size: 10px; color: var(--maya-navy); margin-bottom: 5px;">EXAMINER ANALYTICS</div>
+                        <div style="font-size: 10px; line-height: 1.4;">Find and fix broken questions before they hurt.</div>
+                    </div>
+                </div>
+
+                <!-- Roadmap -->
+                <div class="box" style="border-color: var(--maya-green);">
+                    <div class="box-title" style="color: var(--maya-green);">Roadmap</div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+                        <div style="flex: 1; text-align: center; background: rgba(14, 159, 110, 0.1); padding: 10px; border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--maya-green); border: 1px solid var(--maya-green);">
+                            Round 1: shipped
+                        </div>
+                        <div style="padding: 0 10px; color: var(--text-muted); font-size: 16px;">&rarr;</div>
+                        <div style="flex: 2; text-align: center; background: var(--maya-light); padding: 10px; border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--maya-navy); border: 1px solid var(--maya-border);">
+                            Round 2 Delhi: dashboard + mobile OMR scanner + adaptive difficulty
+                        </div>
+                        <div style="padding: 0 10px; color: var(--text-muted); font-size: 16px;">&rarr;</div>
+                        <div style="flex: 2; text-align: center; background: var(--maya-light); padding: 10px; border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--maya-navy); border: 1px solid var(--maya-border);">
+                            Round 3 Japan: pilot with a real school, measured impact
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Closing Line -->
+        <div style="margin-top: auto; padding: 15px; background: var(--maya-navy); border-radius: 6px; text-align: center; color: white; font-weight: 800; font-size: 16px; letter-spacing: 0.5px;">
+            Maya-Exana — fair exams, by design. We don't watch the student. We break the leaked paper.
+        </div>
+        
+        <!-- Links -->
+        <div style="text-align: center; font-family: var(--font-code); font-size: 10px; color: var(--text-muted); margin-top: 15px;">
+            Repo: github.com/&lt;your-username&gt;/maya-exana &nbsp;&middot;&nbsp; Live demo: open index.html &nbsp;&middot;&nbsp; Verify: node tests/engine.test.js
+        </div>
+
+        <div class="footer">
+            <div>Maya-Exana • FAR AWAY 2026 • Theme: Examinations</div>
+            <div>13 / 13</div>
+        </div>
+    </div>
+"""
+
+with open(output_file, 'w') as f:
+    f.write(boilerplate_top + slide_1 + slide_2 + slide_3 + slide_4 + slide_5 + slide_6 + slide_7 + slide_8 + slide_9 + slide_10 + slide_11 + slide_12 + slide_13 + boilerplate_bottom)
+
+print("Generated maya_exana_deck.html successfully!")
