@@ -17,30 +17,7 @@
                 <a class="no-underline sm:mr-auto" href="#">
                     <h1 class="mb-0 font-bold text-3xl whitespace-nowrap text-black hover:text-gray-700 transition">AI 2027</h1>
                 </a>
-                <div class="relative group">
-                    <a id="nav-collections-link" class="whitespace-nowrap no-underline text-black hover:underline transition cursor-pointer" href="collections.html#research-papers">My Collections</a>
-                    
-                    <div class="absolute left-0 sm:left-auto sm:-translate-x-1/2 top-[100%] mt-2 w-[280px] hidden group-hover:block shadow-lg pb-2 pt-2 rounded bg-[var(--background)] border border-black z-50">
-                        <a id="dropdown-papers-link" href="collections.html#research-papers" class="flex flex-col px-4 py-3 text-black hover:bg-gray-100 transition no-underline border-b border-gray-200">
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-sm whitespace-nowrap">Research Papers</span>
-                                <span class="bg-blue-100 text-blue-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">OTHERS</span>
-                            </div>
-                        </a>
-                        <a id="dropdown-designs-link" href="collections.html#my-designs" class="flex flex-col px-4 py-3 text-black hover:bg-gray-100 transition no-underline border-b border-gray-200">
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-sm whitespace-nowrap">My Designs</span>
-                                <span class="bg-indigo-100 text-indigo-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">SAVED</span>
-                            </div>
-                        </a>
-                        <a href="visual_lab.html" class="flex flex-col px-4 py-3 text-black hover:bg-gray-100 transition no-underline border-b border-gray-200">
-                            <div class="flex items-center gap-3">
-                                <span class="font-bold text-sm whitespace-nowrap">Visual Research Lab</span>
-                                <span class="bg-purple-100 text-purple-800 text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">DESIGN VAULT</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+
                 <div class="relative group">
                     <a class="nav-tab whitespace-nowrap no-underline text-black hover:underline transition cursor-pointer" href="#my-research">My research</a>
                     
@@ -10022,15 +9999,7 @@ Do not only collect certificates. For this kind of role, visible proof matters m
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
-    const collectionsUrl = isLocal ? 'collections.html' : 'https://tejuas98.github.io/my-collections-of-design-/';
-    
-    const mainCollectionsLink = document.getElementById('nav-collections-link');
-    if (mainCollectionsLink) mainCollectionsLink.href = collectionsUrl + '#research-papers';
-    const dropdownPapersLink = document.getElementById('dropdown-papers-link');
-    if (dropdownPapersLink) dropdownPapersLink.href = collectionsUrl + '#research-papers';
-    const dropdownDesignsLink = document.getElementById('dropdown-designs-link');
-    if (dropdownDesignsLink) dropdownDesignsLink.href = collectionsUrl + '#my-designs';
+
 
     const sections = ['my-research', 'about', 'career-roles'];
     const navLinks = document.querySelectorAll('.nav-tab');
